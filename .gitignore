@@ -116,3 +116,8 @@ fabric.properties
 # Other
 statistiky_hrabos/.~lock.breclav_graf.xlsx#
 .~lock*.xlxs
+**/simulator
+*/simulator
+cell.o
+main.o
+grid.o
