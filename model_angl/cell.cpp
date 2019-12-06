@@ -1,11 +1,11 @@
 #include "cell.hpp"
 
-void Cell::updateDensity(int density) {
-    this->density = density;
+void Cell::updateDensity(int state) {
+    this->state = state;
 }
 
-void Cell::setCell(int x, int y, int density) {
-        this->density = density;
-        this->x = x;
-        this->y = y;
+void Cell::setCell(int x, int y, int state) {
+    this->state = state;
+    this->x = x;
+    this->y = y;
 }

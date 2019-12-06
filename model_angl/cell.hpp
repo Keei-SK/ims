@@ -7,15 +7,15 @@
 
 class Cell {
 public:
-    Cell(int x, int y, int density) {
-        setCell(x,y,density);
+    Cell(int x, int y, int state) {
+        setCell(x,y,state);
     }
     Cell(void) {
         setCell(0,0,0);
     }
-    void updateDensity(int density);
-    void setCell(int x, int y, int density);
-    int density;
+    void updateDensity(int state);
+    void setCell(int x, int y, int state);
+    int state;
     int x;
     int y;
 };
