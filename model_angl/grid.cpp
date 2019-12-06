@@ -84,9 +84,6 @@ void Grid::compute_future_grid() {
             } else {
                 future_grid[order].state = 0;
             }
-            
-                
-
         }
     }
 }
