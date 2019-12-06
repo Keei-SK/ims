@@ -1,13 +1,23 @@
-all:
-	latex dokumentace.tex
-	bibtex dokumentace
-	latex dokumentace.tex
-	latex dokumentace.tex
-	dvips -t a4 dokumentace.dvi
-	ps2pdf dokumentace.ps
-	
-	rm -r dokumentace.aux dokumentace.log dokumentace.toc dokumentace.synctex.gz
-	chmod +x remove_excess.sh
+SHELL=/bin/sh
+THESIS=dokumentace
+
+.SUFFIXES:
+.SUFFIXES: .bib .pdf .tex
+.PHONY: clean
+
+run: $(THESIS).pdf clean
+
+$(THESIS).pdf: $(THESIS).bbl $(THESIS).tex
+	pdflatex $(THESIS).tex -draftmode
+	pdflatex $(THESIS).tex 
+
+$(THESIS).bbl: $(THESIS).aux
+	bibtex $(THESIS).aux
+
+$(THESIS).aux: $(THESIS).bib
+	pdflatex $(THESIS).tex -draftmode
+	pdflatex $(THESIS).tex -draftmode
+
 
 clean:
-	rm -r dokumentace.aux dokumentace.log dokumentace.toc dokumentace.synctex.gz
+	rm -rf *.aux *.lof *.log *.lot *.toc *.bbl *.blg *.dvi
