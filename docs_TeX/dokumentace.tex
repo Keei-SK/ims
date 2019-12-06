@@ -1,0 +1,113 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[left= 1.5cm,text={18cm, 25cm},top=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}
+\usepackage{paralist}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{array}
+\pagestyle{plain}
+\pagenumbering{arabic}
+\usepackage[czech]{babel}
+\usepackage{lmodern}
+
+
+\renewcommand*\contentsname{Obsah}
+
+\newdateformat{mydate}{\twodigit{\THEDAY}.{ }\shortmonthname[\THEMONTH] \THEYEAR}
+
+\pagenumbering{arabic}
+
+\usepackage{url}
+\DeclareUrlCommand\url{\def\UrlLeft{<}\def\UrlRight{>} \urlstyle{tt}}
+
+% \usepackage{indentfirst}
+
+\begin{document}
+\selectlanguage{czech}
+
+\begin{titlepage}
+\begin{center}
+    {\Huge \textsc{Vysoké učení technické v Brně}}
+\vspace{\stretch{0.01}}
+    
+    {\LARGE \uppercase{FAKULTA INFORMAČNÍCH TECHNOLOGIÍ}}
+    
+\begin{figure}[h]
+\vspace{5.0cm}
+\centering
+\includegraphics[scale=0.15]{logo.png}
+\vspace{-10.0cm}
+\end{figure}
+    
+\vspace{\stretch{0.382}}
+	{\LARGE Projekt IMS, 2019Z}
+\vspace{\stretch{0.02}}
+
+	{\Huge \textbf{10 - Celulární automaty}}
+\vspace{\stretch{0.02}}\\
+
+{\LARGE {Hrabošová krize}}\\
+
+\begin{figure}[h]
+\centering
+{\Large {\mydate\today}}
+\vspace{6cm}
+\end{figure}
+
+\end{center}
+\begin{compactitem}
+\item[] \textbf{Autoři:}
+\item[] Petr Marek, xmarek66
+\item[] Vanický Jozef, xvanic09
+\end{compactitem}
+
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Úvod}
+\subsection{Zdroje faktů}
+\subsection{Ověření validity/funkčnosti}
+
+\section{Rozbor tématu, použitých metod a technologií}
+\subsection{Popis použitých postupů}
+
+\subsection{Popis použitých metod a technologií}
+
+
+\section{Koncepce modelu}
+todo
+
+\section{Architektura simulačního modelu}
+\subsection{Třída Grid}
+\subsection{Třída Cell}
+todo
+
+
+\section{Podstata simulačních experimentů a jejich průbeh}
+\subsection{Postup experimentování}
+\subsection{Dokumentace jednotlivých experimentů}
+todo idk
+\subsubsection{Experiment XXX}
+\subsubsection{Experiment YYY}
+\subsubsection{Experiment ZZZ}
+\subsection{Zhodnocení experimentů}
+
+\section{Závěr}
+
+
+\section{Literatura}
+
+
+\bibliography{dokumentace}{}
+\bibliographystyle{plain}
+\end{document}
