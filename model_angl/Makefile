@@ -5,6 +5,7 @@ all: simulator
 
 simulator:	$(OBJ_FILES)
 		$(CC) $(OBJ_FILES) -o $@ $(CFLAGS)
+		rm -f *.o
 
 main.o: main.cpp cell.hpp grid.hpp
 	$(CC) -o $@ -c $<  $(CFLAGS)
