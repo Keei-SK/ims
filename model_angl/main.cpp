@@ -9,7 +9,8 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {   
-    Cell cell(20, 2 ,20);
-    cout << cell.x << endl;
+    Grid grid(5);
+    grid.fill_present_grid();
+    grid.print_present_grid();
     return 0;
 }

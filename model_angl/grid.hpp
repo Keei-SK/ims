@@ -8,12 +8,15 @@ using namespace std;
 
 class Grid {
 public:
-    Grid(int width, vector<Cell> present_grid) {
-        present_grid.reserve(width);
-        future_grid.reserve(width);
+    Grid(int width) {
+        int size = width*width;
+        present_grid.reserve(size);
+        future_grid.reserve(size);
         this->width = width;
-        this->present_grid = present_grid;
     }
+    void fill_present_grid();
+    void print_present_grid();
+    int order_from_coords(int x, int y);
     int width;
     vector<Cell> present_grid;
     vector<Cell> future_grid;

@@ -1,0 +1,9 @@
+height width alpha
+
+cells:
+
+0 - empty
+1 - wall
+2 - obstacle
+3 - person
+4 - exit

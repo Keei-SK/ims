@@ -60,7 +60,6 @@ Model::Model(Arguments args) {
 }
 
 void Model::simulate() {
-    double dens_repro_delayed = 0;
     for (int i = 0; i < 100; ++i)
     {
         int month = i % 12;
