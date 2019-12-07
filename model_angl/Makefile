@@ -1,6 +1,6 @@
-CC        = g++
+CC        = g++ 
 OBJ_FILES = main.o cell.o grid.o
-CFLAGS	  = -lm
+CFLAGS	  = -Wall -Wextra -pedantic -std=c++11 -lm -pthread
 all: simulator
 
 simulator:	$(OBJ_FILES)
@@ -20,3 +20,4 @@ clean:
 	rm -f *.o simulator 
 
 .PHONY: clean
+
