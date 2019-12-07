@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/cell.cpp
+cell.hpp
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/cell.hpp
+
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/cell.hpp
+stdlib.h
+-
+stdio.h
+-
+iostream
+-
+
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/grid.cpp
+grid.hpp
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/grid.hpp
+math.h
+-
+
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/grid.hpp
+cell.hpp
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/cell.hpp
+vector
+-
+
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/main.cpp
+stdio.h
+-
+stdlib.h
+-
+iostream
+-
+cell.hpp
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/cell.hpp
+grid.hpp
+/Users/jozefvanicky/Documents/Projects/IMS/model_angl/grid.hpp
+

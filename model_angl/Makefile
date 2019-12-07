@@ -1,6 +1,6 @@
 CC        = g++
 OBJ_FILES = main.o cell.o grid.o
-CFLAGS	  = -Wall -Wextra -pedantic -std=c++11 -lm -lGLU -lGL -lglut
+CFLAGS	  = -Wall -Wextra -pedantic -std=c++11 -lGLU -lGL -lglut
 all: simulator
 
 simulator:	$(OBJ_FILES)
