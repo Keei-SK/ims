@@ -22,7 +22,7 @@ void Grid::set_params(
 }
 
 void Grid::fill_present_grid() {
-    double init_state = -1/this->mortality;
+    //double init_state = -1/this->mortality;
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
@@ -70,7 +70,10 @@ void Grid::get_future_grid() {
             new_state = state + this->fertility*state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
-            if (new_state > 0) {
+            if (new_state > 7000/(this->width*this->width)) {
+                future_grid[order].state = state;
+            }
+            else if (new_state > 0) {
                 future_grid[order].state = new_state;
             } else {
                 future_grid[order].state = 0;

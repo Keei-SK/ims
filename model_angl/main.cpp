@@ -6,10 +6,10 @@ using namespace std;
 
 #include "cell.hpp"
 #include "grid.hpp"
-
-int main(int argc, char* argv[])
+//int argc, char* argv[]
+int main()
 {   
-    Grid grid(5);
+    Grid grid(50);
 
     // reproduction_rate,  max_population, migration_pararameter
     grid.set_params(0.99, 100, 0.2);
