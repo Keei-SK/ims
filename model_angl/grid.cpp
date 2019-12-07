@@ -17,8 +17,16 @@ void Grid::set_params(
 ) {
     this->fertility = (1 - reproduction_rate);
     this->mortality = (-reproduction_rate/max_population);
+    //this->fertility = 
+    //this->mortality = 0.5;
     this->max_population = max_population;
     this->migration_param = migration_param;
+}
+
+double Grid::random_float(double min, double max)
+{
+    double r = (double)rand() / (double)RAND_MAX;
+    return min + r * (max - min);
 }
 
 void Grid::fill_present_grid() {
@@ -28,7 +36,15 @@ void Grid::fill_present_grid() {
         for (int x = 0; x < this->width; ++x)
         {
             // creates Cell and appends it at the end of grid
-            present_grid.emplace_back(x,y,x+y);
+            this->present_grid.emplace_back(x,y,0);
+        }
+    }
+    for (int y = 3; y < 8; ++y)
+    {
+        for (int x = 3; x < 9; ++x)
+        {
+            // creates Cell and appends it at the end of grid
+            this->present_grid[order_from_coords(x, y)].state = random_float(0, 0.2);
         }
     }
 }
@@ -50,30 +66,38 @@ void Grid::print_present_grid() {
     {
         for (int x = 0; x < this->width; ++x)
         {
-            cout << this->present_grid[order_from_coords(x, y)].state << " ";
+            printf("%.02f ", this->present_grid[order_from_coords(x, y)].state);
         }
         cout << endl;
     }
     cout << endl;
 }
 
-void Grid::get_future_grid() {
-    int state = 0;
-    int new_state = 0;
-    int order = 0;    
+void Grid::get_future_grid(int month) {
+    double state = 0;
+    double new_state = 0;
+    int order = 0;
+    double winter_coef = 0.75;
+    if (month > 7)
+        cout << "zima" << endl;
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
         {
             state = present_grid[order].state;
             order = order_from_coords(x,y);
-            new_state = state + this->fertility*state +
+            
+            if (month > 7) {
+                new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
-            if (new_state > 7000/(this->width*this->width)) {
-                future_grid[order].state = state;
+                new_state *= winter_coef;                
+            } else {
+                new_state = state + this->fertility*state +
+                this->mortality*pow(state,2) +
+                this->migration_param*diffusion_operator(x,y);
             }
-            else if (new_state > 0) {
+            if (new_state > 0.0 && new_state < 100) {
                 future_grid[order].state = new_state;
             } else {
                 future_grid[order].state = 0;
@@ -91,6 +115,19 @@ void Grid::copy_future_to_present_grid() {
             this->future_grid[order_from_coords(x, y)].state;
         }
     }
+}
+
+double Grid::get_average() {
+    double sum = 0.0;
+    for (int y = 0; y < this->width; ++y)
+    {
+        for (int x = 0; x < this->width; ++x)
+        {
+            sum += this->present_grid[order_from_coords(x, y)].state;
+        }
+    }
+    double area = this->width*this->width;
+    return sum/area;
 }
 
 double Grid::diffusion_operator(int x, int y) {
