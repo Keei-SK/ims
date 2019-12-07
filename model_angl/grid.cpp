@@ -142,6 +142,8 @@ void Grid::showInCmd()
     cout << endl;
 }
 
+
+
 void Grid::copy_future_to_present_grid() {
     for (int y = 0; y < this->width; ++y)
     {
@@ -221,7 +223,6 @@ double Grid::diffusion_operator_x_0(int y) {
 
 double Grid::diffusion_operator_y_0(int x) {
     double diffusion_operator =
-        0 +
         get_present_cell(0,1).state +
         get_present_cell(x+1,0).state +
         get_present_cell(x-1,0).state +
@@ -231,10 +232,8 @@ double Grid::diffusion_operator_y_0(int x) {
 
 double Grid::diffusion_operator_0() {
     double diffusion_operator =
-        0 +
         get_present_cell(0,1).state +
         get_present_cell(1,0).state +
-        0 +
         (4*get_present_cell(0, 0).state);
     return diffusion_operator;
 }
@@ -242,7 +241,6 @@ double Grid::diffusion_operator_0() {
 double Grid::diffusion_operator_y_max(int x) {
     double diffusion_operator =
         get_present_cell(x,this->max_idx-1).state +
-        0 +
         get_present_cell(x+1,this->max_idx).state +
         get_present_cell(x-1,this->max_idx).state +
         (4*get_present_cell(0, 0).state);
@@ -253,7 +251,6 @@ double Grid::diffusion_operator_x_max(int y) {
     double diffusion_operator =
         get_present_cell(this->max_idx, y-1).state +
         get_present_cell(this->max_idx, y+1).state +
-        0 +
         get_present_cell(this->max_idx-1, y).state +
         (4*get_present_cell(this->max_idx, y).state);
     return diffusion_operator;
@@ -262,8 +259,6 @@ double Grid::diffusion_operator_x_max(int y) {
 double Grid::diffusion_operator_max() {
     double diffusion_operator =
         get_present_cell(this->max_idx,this->max_idx-1).state +
-        0 +
-        0 +
         get_present_cell(this->max_idx-1,this->max_idx).state +
         (4*get_present_cell(this->max_idx, this->max_idx).state);
     return diffusion_operator;
@@ -271,9 +266,7 @@ double Grid::diffusion_operator_max() {
 
 double Grid::diffusion_operator_x_max_y_0() {
     double diffusion_operator =
-        0 +
         get_present_cell(this->max_idx, 1).state +
-        0 +
         get_present_cell(this->max_idx-1, 0).state +
         (4*get_present_cell(this->max_idx, 0).state);
     return diffusion_operator;
@@ -282,9 +275,7 @@ double Grid::diffusion_operator_x_max_y_0() {
 double Grid::diffusion_operator_y_max_x_0() {
     double diffusion_operator =
         get_present_cell(0, this->max_idx-1).state +
-        0 +
         get_present_cell(1, this->max_idx).state +
-        0 +
         (4*get_present_cell(0, this->max_idx).state);
     return diffusion_operator;
 }
