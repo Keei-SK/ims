@@ -38,6 +38,7 @@ public:
     double diffusion_operator_x_max_y_0();
     double diffusion_operator_y_max_x_0();
     double random_float(double min, double max);
+    void showInCmd();
 
     int width;
     int max_idx;

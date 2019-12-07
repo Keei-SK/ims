@@ -106,6 +106,47 @@ void Grid::get_future_grid(int month) {
     }
 }
 
+void Grid::showInCmd(void)
+{
+    for(int y = 0; y < this->width; y++) //for row in matrix
+    {
+        for (int x = 0; x < this->width; x++) //for col in matrix
+        {
+            if(this->present_grid[order_from_coords(x, y)].state < 0.1) //cell contain plant
+            {
+                cout << "\033[1;30m 0\033[0m ";
+            }
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.2) //cell is vacant
+            {
+                cout << "\033[1;35m 1\033[0m ";
+            }
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.3) //cell is vacant
+            {
+                cout << "\033[1;32m 2\033[0m ";
+            }
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.4) //cell is vacant
+            {
+                cout << "\033[1;33m 3\033[0m ";
+            }
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.5) //cell is vacant
+            {
+                cout << "\033[1;34m 4\033[0m ";
+            }
+            else //cell contain stone
+            {
+                cout << "\033[1;31m 5\033[0m ";
+            }
+        }
+        cout << endl;
+    }
+    cout << endl;
+    /*for(int k = 0; k < this->width; k++)
+    {
+        cout << "\033[F";
+        flush(cout);
+    }*/
+}
+
 void Grid::copy_future_to_present_grid() {
     for (int y = 0; y < this->width; ++y)
     {
