@@ -77,8 +77,8 @@ void Grid::get_future_grid(int month) {
     double state = 0;
     double new_state = 0;
     int order = 0;
-    double winter_coef = 0.75;
-    if (month > 7)
+    double winter_coef = 0.3;
+    if (month > 8)
         cout << "zima" << endl;
     for (int y = 0; y < this->width; ++y)
     {
@@ -87,7 +87,7 @@ void Grid::get_future_grid(int month) {
             state = present_grid[order].state;
             order = order_from_coords(x,y);
             
-            if (month > 7) {
+            if (month > 8) {
                 new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
