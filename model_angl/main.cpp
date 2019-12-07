@@ -90,10 +90,9 @@ void display()
             }
         }
         glutSwapBuffers();
-        usleep(0.01);
+        usleep(10000);
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
-        grid.showInCmd();
     }    
 }

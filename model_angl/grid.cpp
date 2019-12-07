@@ -78,8 +78,6 @@ void Grid::get_future_grid(int month) {
     double new_state = 0;
     int order = 0;
     double winter_coef = 0.3;
-    if (month > 8)
-        cout << "zima" << endl;
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
