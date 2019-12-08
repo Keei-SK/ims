@@ -31,6 +31,16 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+float round(float var) 
+{ 
+    // 37.66666 * 100 =3766.66 
+    // 3766.66 + .5 =3767.16    for rounding off value 
+    // then type cast to int so value is 3767 
+    // then divided by 100 so the value converted into 37.67 
+    float value = (int)(var * 100 + .5); 
+    return (float)value / 100; 
+} 
+
 void display()
 {   
     Grid grid(100);
@@ -60,19 +70,23 @@ void display()
         {
             for(int x = 0; x <= grid.width; x++) //for col in matrix
             {   
-                if(grid.present_grid[grid.order_from_coords(x, y)].state < 0.1) {
+                double state = round(grid.present_grid[grid.order_from_coords(x, y)].state);
+                if(state == 0.0) {
                     glColor3f(0.0f, 0.0f, 0.0f);
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.2) {
+                else if(state < 0.1) {
+                    glColor3f(0.1f, 0.2f, 0.3f);
+                }
+                else if (state < 0.2) {
                     glColor3f(0.0f, 0.301f, 0.301f);
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.3) {
+                else if (state < 0.3) {
                     glColor3f(0.32157f, 0.0941f, 0.0f);
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.4) {
+                else if (state < 0.4) {
                     glColor3f(0.0f, 1.0f, 1.0f );
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.5) {
+                else if (state < 0.5) {
                     glColor3f(0.5f, 1.0f, 0.5f);
                 }
                 else
@@ -93,8 +107,7 @@ void display()
         glutSwapBuffers();
         string name = "Cellular automata (1ha) - Month " + std::to_string(((month+2) % 12)+1);
         glutSetWindowTitle(name.c_str());
-        glutSetWindowTitle(name.c_str());
-        usleep(10000*100);
+        usleep(130000);
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
