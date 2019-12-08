@@ -82,13 +82,13 @@ void Grid::get_future_grid(int month) {
 
                 int winter_intensity = (int) (1 + 3 * (rand() / RAND_MAX+1.0));
                 if (winter_intensity == 1){ //weak winter
-                    winter_coef = 0.82;
+                    winter_coef = 0.85;
                 }
                 else if(winter_intensity == 2){ //medium strong winter
-                    winter_coef = 0.75;
+                    winter_coef = 0.80;
                 }
                 else{ // strong winter
-                    winter_coef = 0.70;
+                    winter_coef = 0.75;
                 }
                 new_state *= winter_coef;
             }
@@ -110,44 +110,6 @@ void Grid::get_future_grid(int month) {
         }
     }
 }
-
-void Grid::show_in_terminal()
-{
-    for(int y = 0; y < this->width; y++)
-    {
-        for (int x = 0; x < this->width; x++)
-        {
-            if(this->present_grid[order_from_coords(x, y)].state < 0.1)
-            {
-                cout << "\033[1;30m 0\033[0m ";
-            }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.2)
-            {
-                cout << "\033[1;35m 1\033[0m ";
-            }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.3)
-            {
-                cout << "\033[1;32m 2\033[0m ";
-            }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.4)
-            {
-                cout << "\033[1;33m 3\033[0m ";
-            }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.5)
-            {
-                cout << "\033[1;34m 4\033[0m ";
-            }
-            else
-            {
-                cout << "\033[1;31m 5\033[0m ";
-            }
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
-
 
 void Grid::copy_future_to_present_grid() {
     for (int y = 0; y < this->width; ++y)
