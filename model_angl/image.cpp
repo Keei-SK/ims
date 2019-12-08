@@ -22,7 +22,7 @@ double Image::round(double var)
     return (double)value / 100;
 } 
 
-void Image::create_image(Grid grid, int waitKeyTime, bool showWindow = false) {
+void Image::create_image(Grid grid, int waitKeyTime, int month, bool showWindow = false) {
     Mat image = Mat(this->imgSize.height, this->imgSize.width, CV_8UC3, Scalar(255, 255, 255));
     //this->createGrid(image);
 
@@ -31,7 +31,7 @@ void Image::create_image(Grid grid, int waitKeyTime, bool showWindow = false) {
         for(int x = 0; x <= grid.width; x++) //for col in matrix
         {   
             double state = round(grid.present_grid[grid.order_from_coords(x, y)].state);
-            if(state == 0.00) {
+            if(state <= 0.02) {
                 this->create_pixel(image, Point(y, x), CELL_0);
             }
             else if(state <=0.05) {
@@ -60,9 +60,11 @@ void Image::create_image(Grid grid, int waitKeyTime, bool showWindow = false) {
     }
 
     if (showWindow) {
-        namedWindow("Cellular automata", CV_WINDOW_AUTOSIZE);
-        imshow("Cellular automata", image);
+        string name = "Month " + std::to_string(((month+2) % 12)+1);
+        putText(image, name, Point2f(20,20), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(0, 0, 255, 255));
+        namedWindow("Cellular automata 1ha", CV_WINDOW_AUTOSIZE);
+        imshow("Cellular automata 1ha", image);
         //imwrite("./tmp/img.png", image);
     }
-    waitKey(waitKeyTime );
+    waitKey(waitKeyTime);
 }

@@ -41,7 +41,7 @@ void Grid::init_present_grid() {
     int randy = 0;
     int rand_cnt = 0;
     double rand_dens;
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 30; ++i)
     {   
         rand_cnt = rand() % 20;
         randx = rand() % (this->width-rand_cnt);

@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <GL/glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include <unistd.h>
 
 using namespace std;
@@ -23,7 +20,7 @@ int main()
 
     int sim_months = 48;
     // reproduction_rate,  max_population, migration_pararameter
-    grid.set_params(0.85, 5000, 0.05);
+    grid.set_params(0.85, 5000, 0.2);
     grid.init_present_grid();
     int month = 0;
     Image image(600, 600);
@@ -32,7 +29,7 @@ int main()
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
-        image.create_image(grid, 50, true);
+        image.create_image(grid, 1000, month, true);
     }
 
     return 0;

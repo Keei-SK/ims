@@ -24,7 +24,7 @@ using namespace cv;
 class Image {
 public:
     Image(unsigned long width, unsigned long height);
-    void create_image(Grid grid, int waitKeyTime, bool showWindow);
+    void create_image(Grid grid, int waitKeyTime, int month, bool showWindow);
 private:    
     Size2d imgSize;
     unsigned long width;
