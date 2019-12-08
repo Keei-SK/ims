@@ -23,14 +23,14 @@ using namespace cv;
 
 class Image {
 public:
-    Image(unsigned long width, unsigned long height);    
+    Image(unsigned long width, unsigned long height);
+    void create_image(Grid grid, int waitKeyTime, bool showWindow);
 private:    
     Size2d imgSize;
     unsigned long width;
     unsigned long height;
-
-    void createImage(Grid grid, int waitKeyTime, bool showWindow);
-    void createPixel(Mat img, Point pixel, Scalar color);
+    
+    void create_pixel(Mat img, Point pixel, Scalar color);
     double round(double var);
 };
 

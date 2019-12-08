@@ -6,7 +6,7 @@ Image::Image(unsigned long width, unsigned long height) {
     this->height = height;
 }
 
-void Image::createPixel(Mat img, Point pixel, Scalar color) {
+void Image::create_pixel(Mat img, Point pixel, Scalar color) {
     int x = pixel.x*GRID_INC;
     int y = pixel.y*GRID_INC;
     for (int i = 0; i < GRID_INC; ++i)
@@ -22,7 +22,7 @@ double Image::round(double var)
     return (double)value / 100;
 } 
 
-void Image::createImage(Grid grid, int waitKeyTime, bool showWindow = false) {
+void Image::create_image(Grid grid, int waitKeyTime, bool showWindow = false) {
     Mat image = Mat(this->imgSize.height, this->imgSize.width, CV_8UC3, Scalar(255, 255, 255));
     //this->createGrid(image);
 
@@ -32,29 +32,29 @@ void Image::createImage(Grid grid, int waitKeyTime, bool showWindow = false) {
         {   
             double state = round(grid.present_grid[grid.order_from_coords(x, y)].state);
             if(state == 0.00) {
-                this->createPixel(image, Point(y, x), CELL_0);
+                this->create_pixel(image, Point(y, x), CELL_0);
             }
             else if(state <=0.05) {
-                this->createPixel(image, Point(y, x), CELL_1);
+                this->create_pixel(image, Point(y, x), CELL_1);
             }
             else if(state <= 0.10) {
-                this->createPixel(image, Point(y, x), CELL_2);
+                this->create_pixel(image, Point(y, x), CELL_2);
             }
             else if (state <= 0.20) {
-                this->createPixel(image, Point(y, x), CELL_3);;
+                this->create_pixel(image, Point(y, x), CELL_3);;
             }
             else if (state <= 0.30) {
-                this->createPixel(image, Point(y, x), CELL_4);
+                this->create_pixel(image, Point(y, x), CELL_4);
             }
             else if (state <= 0.40) {
-                this->createPixel(image, Point(y, x), CELL_5);
+                this->create_pixel(image, Point(y, x), CELL_5);
             }
             else if (state <= 0.50) {
-                this->createPixel(image, Point(y, x), CELL_6);
+                this->create_pixel(image, Point(y, x), CELL_6);
             }
             else
             {
-                this->createPixel(image, Point(y, x), CELL_7);
+                this->create_pixel(image, Point(y, x), CELL_7);
             }
         }
     }
@@ -62,7 +62,7 @@ void Image::createImage(Grid grid, int waitKeyTime, bool showWindow = false) {
     if (showWindow) {
         namedWindow("Cellular automata", CV_WINDOW_AUTOSIZE);
         imshow("Cellular automata", image);
-        //imwrite("/tmp/img.png", image);
+        //imwrite("./tmp/img.png", image);
     }
     waitKey(waitKeyTime );
 }

@@ -24,7 +24,6 @@ int main()
     int sim_months = 48;
     // reproduction_rate,  max_population, migration_pararameter
     grid.set_params(0.85, 5000, 0.05);
-    cout << "fert: " << grid.fertility << " mort: " << grid.mortality << endl;
     grid.init_present_grid();
     int month = 0;
     Image image(600, 600);
@@ -33,7 +32,7 @@ int main()
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
-        image.createImage(grid, 50, true);
+        image.create_image(grid, 50, true);
     }
 
     return 0;
