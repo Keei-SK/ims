@@ -28,17 +28,7 @@ public:
     void copy_future_to_present_grid();
     double get_average();
     double diffusion_operator(int x, int y);
-    double diffusion_operator_middle(int x, int y);
-    double diffusion_operator_x_0(int y);
-    double diffusion_operator_y_0(int x);    
-    double diffusion_operator_x_max(int y);
-    double diffusion_operator_y_max(int x);
-    double diffusion_operator_max();
-    double diffusion_operator_0();
-    double diffusion_operator_x_max_y_0();
-    double diffusion_operator_y_max_x_0();
     double random_float(double min, double max);
-
 
     int width;
     int max_idx;
