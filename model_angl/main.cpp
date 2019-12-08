@@ -43,7 +43,7 @@ void display()
     Grid grid(100);
 
     // reproduction_rate,  max_population, migration_pararameter
-    grid.set_params(0.85, 5000, 0.05);
+    grid.set_params(0.85, 5000, 0.05); //todo populace max
     cout << "fert: " << grid.fertility << " mort: " << grid.mortality << endl;
     grid.fill_present_grid();
 
