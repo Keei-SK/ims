@@ -19,7 +19,7 @@ public:
         double reproduction_rate, double max_population,
         double migration_param
     );
-    void fill_present_grid();
+    void init_present_grid();
     void print_present_grid();   
     int order_from_coords(int x, int y);
     Cell get_present_cell(int x, int y);

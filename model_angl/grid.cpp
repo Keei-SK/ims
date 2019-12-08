@@ -27,13 +27,13 @@ void Grid::fill_chunk_of_present_grid(int xmin, int ymin, int width, double valu
     }
 }
 
-void Grid::fill_present_grid() {
+void Grid::init_present_grid() {
     //double init_state = -1/this->mortality;
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
         {
-            // creates Cell and appends it at the end of grid
+            // creates Cell and appends it behind the last Cell
             this->present_grid.emplace_back(x,y,0);
         }
     }
