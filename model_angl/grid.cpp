@@ -98,7 +98,7 @@ void Grid::get_future_grid(int month) {
                     winter_coef = 0.75;
                 }
                 else{ // strong winter
-                    winter_coef = 0.68;
+                    winter_coef = 0.70;
                 }
                 new_state *= winter_coef;
             }

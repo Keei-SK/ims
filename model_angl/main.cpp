@@ -18,16 +18,16 @@ int main(int argc, char* argv[])
 {   
     srand(time(NULL));
 
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
     glutInitWindowSize(600,600);
     glutCreateWindow("Celular automata");
 
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glutDisplayFunc(display);
 
-    glutMainLoop(); 
+    glutMainLoop();
     return 0;
 }
 
@@ -59,25 +59,32 @@ void display()
         for(int y = 0; y <= grid.width; y++) //for row in matrix
         {
             for(int x = 0; x <= grid.width; x++) //for col in matrix
-            {   
-                if(grid.present_grid[grid.order_from_coords(x, y)].state < 0.1) {
-                    glColor3f(0.0f, 0.0f, 0.0f);
+            {
+                if(grid.present_grid[grid.order_from_coords(x, y)].state != 0 && (grid.present_grid[grid.order_from_coords(x, y)].state <= 0.025)) {
+                    glColor3f(0.5f, 0.5f, 0.5f); //seda
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.2) {
-                    glColor3f(0.0f, 0.301f, 0.301f);
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state != 0 && grid.present_grid[grid.order_from_coords(x, y)].state <= 0.05) {
+                    glColor3f(0.102f, 0.102f, 1.0f); //modra divne svetla
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.3) {
-                    glColor3f(0.32157f, 0.0941f, 0.0f);
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state != 0 && grid.present_grid[grid.order_from_coords(x, y)].state <= 0.1) {
+                    glColor3f(0.0f, 0.0f, 0.204f); //modra tmava
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.4) {
-                    glColor3f(0.0f, 1.0f, 1.0f );
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state != 0 && grid.present_grid[grid.order_from_coords(x, y)].state <= 0.2) {
+                    glColor3f(0.0f, 0.153f, 0.0f); //divne tmava zelena
                 }
-                else if (grid.present_grid[grid.order_from_coords(x, y)].state < 0.5) {
-                    glColor3f(0.5f, 1.0f, 0.5f);
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state != 0 && grid.present_grid[grid.order_from_coords(x, y)].state <= 0.3) {
+                    glColor3f(0.0f, 1.0f, 0.0f); //zelena
                 }
-                else
-                {
-                    glColor3f(1.0f, 0.0f, 1.0f);
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state != 0 && grid.present_grid[grid.order_from_coords(x, y)].state <= 0.4) {
+                    glColor3f(1.0f, 1.0f, 0.0f); //zluta
+                }
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state != 0 && grid.present_grid[grid.order_from_coords(x, y)].state <= 0.5) {
+                    glColor3f(1.0f, 0.5f, 0.0f); //oranzova
+                }
+                else if (grid.present_grid[grid.order_from_coords(x, y)].state > 0.5) {
+                    glColor3f(1.0f, 0.0f, 0.0f); //cervena
+                } else{
+                    glColor3f(0.0f, 0.0f, 0.0f); //cerna
                 }
 
                 glBegin(GL_QUADS); // 2x2 pixels
