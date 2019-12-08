@@ -47,14 +47,14 @@ void Image::createImage(Grid grid, int waitKeyTime, bool showWindow = false) {
                 this->createPixel(image, Point(y, x), CELL_4);
             }
             else if (state <= 0.40) {
-                this->createPixel(image, Point(y, x), CELL_5); // bude zluta
+                this->createPixel(image, Point(y, x), CELL_5);
             }
             else if (state <= 0.50) {
-                this->createPixel(image, Point(y, x), CELL_6); //bude oranzova
+                this->createPixel(image, Point(y, x), CELL_6);
             }
             else
             {
-                this->createPixel(image, Point(y, x), CELL_7); //bude cervena
+                this->createPixel(image, Point(y, x), CELL_7);
             }
         }
     }
