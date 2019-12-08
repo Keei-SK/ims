@@ -10,7 +10,6 @@ using namespace std;
 
 #include "cell.hpp"
 #include "grid.hpp"
-//int argc, char* argv[]
 
 void display();
 
@@ -31,14 +30,11 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-float round(float var) 
+// round double to two decimal places
+double round(double var) 
 { 
-    // 37.66666 * 100 =3766.66 
-    // 3766.66 + .5 =3767.16    for rounding off value 
-    // then type cast to int so value is 3767 
-    // then divided by 100 so the value converted into 37.67 
-    float value = (int)(var * 100 + .5); 
-    return (float)value / 100; 
+    double value = (int)(var * 100 + .5); 
+    return (double)value / 100; 
 } 
 
 void display()
@@ -71,22 +67,22 @@ void display()
             for(int x = 0; x <= grid.width; x++) //for col in matrix
             {   
                 double state = round(grid.present_grid[grid.order_from_coords(x, y)].state);
-                if(state == 0.0) {
+                if(state == 0.00) {
                     glColor3f(0.0f, 0.0f, 0.0f);
                 }
-                else if(state < 0.1) {
+                else if(state < 0.10) {
                     glColor3f(0.1f, 0.2f, 0.3f);
                 }
-                else if (state < 0.2) {
+                else if (state < 0.20) {
                     glColor3f(0.0f, 0.301f, 0.301f);
                 }
-                else if (state < 0.3) {
+                else if (state < 0.30) {
                     glColor3f(0.32157f, 0.0941f, 0.0f);
                 }
-                else if (state < 0.4) {
+                else if (state < 0.40) {
                     glColor3f(0.0f, 1.0f, 1.0f );
                 }
-                else if (state < 0.5) {
+                else if (state < 0.50) {
                     glColor3f(0.5f, 1.0f, 0.5f);
                 }
                 else
