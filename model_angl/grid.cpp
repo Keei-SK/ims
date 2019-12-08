@@ -29,7 +29,6 @@ void Grid::fill_chunk_of_present_grid(int xmin, int ymin, int width, double valu
 
 void Grid::fill_present_grid() {
     //double init_state = -1/this->mortality;
-    double half = this->width/2.0;
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
@@ -38,7 +37,19 @@ void Grid::fill_present_grid() {
             this->present_grid.emplace_back(x,y,0);
         }
     }
-    this->fill_chunk_of_present_grid(half-10,half-10,10,0.2);
+    int randx = 0;
+    int randy = 0;
+    int rand_cnt = 0;
+    double rand_dens;
+    for (int i = 0; i < 50; ++i)
+    {   
+        rand_cnt = rand() % 20;
+        randx = rand() % (this->width-rand_cnt);
+        randy = rand() % (this->width-rand_cnt);
+        
+        rand_dens = random_double(0.05, 0.1);
+        this->fill_chunk_of_present_grid(randx,randy,rand_cnt,rand_dens);
+    }
 }
 
 Cell Grid::get_present_cell(int x, int y) {
