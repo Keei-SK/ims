@@ -82,6 +82,7 @@ void Grid::get_future_grid(int month) {
     int order = 0;
     double winter_coef = 0.85;
 
+    /* Set winter for the year */
     if (month > 7) {
         int winter_intensity = (int) (1 + 3 * (rand() / RAND_MAX+1.0));
         if (winter_intensity == 1){ //weak winter
