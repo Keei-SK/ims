@@ -27,17 +27,22 @@ int main()
     cout << "fert: " << grid.fertility << " mort: " << grid.mortality << endl;
     grid.init_present_grid();
     int month = 0;
-
-    Image image(60,60);
+    /*Image image(600, 600);
+    Mat mat = Mat(image.imgSize.height, image.imgSize.width, CV_8UC3, Scalar(255, 255, 255));
+    image.createPixel(mat, Point(600, 600), CELL_0);
+    namedWindow("Cellular automata", CV_WINDOW_AUTOSIZE);
+    imshow("Cellular automata", mat);
+    waitKey(10000000);*/
+    Image image(600, 600);
     for (int t = 0; t < sim_months; ++t)
     {
+
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
         //grid.print_present_grid();
         image.createImage(grid, 50, true);
     }
-
 
     return 0;
 }
