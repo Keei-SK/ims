@@ -54,11 +54,11 @@ void display()
     {
 
         //DISPLAY THE MATRIX
-        GLfloat minSize = 300.0f/grid.width;
+        GLfloat minSize = 200.0f/grid.width;
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        glOrtho(0.0, 100, 100, 0.0, -1.0, 1.0);
+        glOrtho(0.0, 200, 200, 0.0, -1.0, 1.0);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         glViewport(0, 0, 600, 600);
@@ -108,7 +108,7 @@ void display()
         string name = "Cellular automata (1ha) - Month " + std::to_string(((month+2) % 12)+1);
         glutSetWindowTitle(name.c_str());
         glutSetWindowTitle(name.c_str());
-        usleep(10000*100);
+        usleep(250000);
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
