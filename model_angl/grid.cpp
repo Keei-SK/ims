@@ -1,16 +1,6 @@
 #include "grid.hpp"
 #include <math.h>
 
-/*
-    for (int y = 0; y < this->width; ++y)
-    {
-        for (int x = 0; x < this->width; ++x)
-        {
-            
-        }
-    }
-*/
-
 void Grid::set_params(
     double reproduction_rate, double max_population, double migration_param) {
     this->fertility = (1 - reproduction_rate);
@@ -116,46 +106,38 @@ void Grid::get_future_grid(int month) {
             if (new_state < 0) {
                 new_state = 0;
             }
-            
-            /*
-            if (new_state > 0.0 && new_state < 100) {
-                future_grid[order].state = new_state;
-            } else {
-                future_grid[order].state = 0;
-            }*/
             future_grid[order].state = new_state;
-
         }
     }
 }
 
-void Grid::showInCmd()
+void Grid::show_in_terminal()
 {
-    for(int y = 0; y < this->width; y++) //for row in matrix
+    for(int y = 0; y < this->width; y++)
     {
-        for (int x = 0; x < this->width; x++) //for col in matrix
+        for (int x = 0; x < this->width; x++)
         {
-            if(this->present_grid[order_from_coords(x, y)].state < 0.1) //cell contain plant
+            if(this->present_grid[order_from_coords(x, y)].state < 0.1)
             {
                 cout << "\033[1;30m 0\033[0m ";
             }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.2) //cell is vacant
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.2)
             {
                 cout << "\033[1;35m 1\033[0m ";
             }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.3) //cell is vacant
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.3)
             {
                 cout << "\033[1;32m 2\033[0m ";
             }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.4) //cell is vacant
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.4)
             {
                 cout << "\033[1;33m 3\033[0m ";
             }
-            else if (this->present_grid[order_from_coords(x, y)].state < 0.5) //cell is vacant
+            else if (this->present_grid[order_from_coords(x, y)].state < 0.5)
             {
                 cout << "\033[1;34m 4\033[0m ";
             }
-            else //cell contain stone
+            else
             {
                 cout << "\033[1;31m 5\033[0m ";
             }
