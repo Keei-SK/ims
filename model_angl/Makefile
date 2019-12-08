@@ -11,15 +11,6 @@ simulator:	$(OBJ_FILES)
 main.o: main.cpp cell.hpp grid.hpp image.hpp
 	$(CC) -o $@ -c $<  $(CFLAGS) $(OPENCV_FLAGS)
 
-cell.o: cell.cpp cell.hpp
-	$(CC) -o $@ -c $<  $(CFLAGS)
-
-grid.o: grid.cpp grid.hpp
-	$(CC) -o $@ -c $<  $(CFLAGS)
-
-image.o: image.cpp image.hpp cell.hpp
-	$(CC) -o $@ -c $<  $(CFLAGS) $(OPENCV_FLAGS)
-
 
 clean:
 	rm -f *.o simulator 
