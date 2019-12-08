@@ -91,7 +91,7 @@ void display()
             }
         }
         glutSwapBuffers();
-        string name = "Month " + std::to_string(((month+2) % 12)+1);
+        string name = "Cellular automata (1ha) - Month " + std::to_string(((month+2) % 12)+1);
         glutSetWindowTitle(name.c_str());
         glutSetWindowTitle(name.c_str());
         usleep(10000*100);
