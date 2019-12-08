@@ -11,10 +11,20 @@ void Grid::set_params(
     this->migration_param = migration_param;
 }
 
-double Grid::random_float(double min, double max)
+double Grid::random_double(double min, double max)
 {
     double r = (double)rand()/(double)RAND_MAX+1.0;
     return min + r * (max - min);
+}
+
+void Grid::fill_chunk_of_present_grid(int xmin, int ymin, int width, double value) {
+    for (int y = ymin; y < width+ymin; ++y)
+    {
+        for (int x = xmin; x < width+xmin; ++x)
+        {
+            this->present_grid[order_from_coords(x, y)].state = value;
+        }
+    }
 }
 
 void Grid::fill_present_grid() {
@@ -27,13 +37,18 @@ void Grid::fill_present_grid() {
             this->present_grid.emplace_back(x,y,0);
         }
     }
-    for (int y = 3; y < 8; ++y)
-    {
-        for (int x = 3; x < 9; ++x)
-        {
-            // creates Cell and appends it at the end of grid
-            this->present_grid[order_from_coords(x, y)].state = random_float(0, 0.2);
-        }
+    int randx = 0;
+    int randy = 0;
+    int rand_cnt = 0;
+    double rand_dens;
+    for (int i = 0; i < 50; ++i)
+    {   
+        rand_cnt = rand() % 20;
+        randx = rand() % (this->width-rand_cnt);
+        randy = rand() % (this->width-rand_cnt);
+        
+        rand_dens = random_double(0.05, 0.1);
+        this->fill_chunk_of_present_grid(randx,randy,rand_cnt,rand_dens);
     }
 }
 

@@ -28,7 +28,8 @@ public:
     void copy_future_to_present_grid();
     double get_average();
     double diffusion_operator(int x, int y);
-    double random_float(double min, double max);
+    double random_double(double min, double max);
+    void fill_chunk_of_present_grid(int xmin, int ymin, int width, double value);
 
     int width;
     int max_idx;
