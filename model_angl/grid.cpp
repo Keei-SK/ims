@@ -65,8 +65,20 @@ void Grid::get_future_grid(int month) {
     double state = 0;
     double new_state = 0;
     int order = 0;
-    double winter_coef;
+    double winter_coef = 0.85;
 
+    if (month > 7) {
+        int winter_intensity = (int) (1 + 3 * (rand() / RAND_MAX+1.0));
+        if (winter_intensity == 1){ //weak winter
+            winter_coef = 0.85;
+        }
+        else if(winter_intensity == 2){ //medium strong winter
+            winter_coef = 0.80;
+        }
+        else{ // strong winter
+            winter_coef = 0.75;
+        }
+    }
 
     for (int y = 0; y < this->width; ++y)
     {
@@ -80,16 +92,6 @@ void Grid::get_future_grid(int month) {
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
 
-                int winter_intensity = (int) (1 + 3 * (rand() / RAND_MAX+1.0));
-                if (winter_intensity == 1){ //weak winter
-                    winter_coef = 0.85;
-                }
-                else if(winter_intensity == 2){ //medium strong winter
-                    winter_coef = 0.80;
-                }
-                else{ // strong winter
-                    winter_coef = 0.75;
-                }
                 new_state *= winter_coef;
             }
             else if (month >= 7) {
