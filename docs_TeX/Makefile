@@ -1,22 +1,12 @@
 SHELL=/bin/sh
 THESIS=dokumentace
 
-.SUFFIXES:
-.SUFFIXES: .bib .pdf .tex
-.PHONY: clean
-
-run: $(THESIS).pdf clean
-
-$(THESIS).pdf: $(THESIS).bbl $(THESIS).tex
-	pdflatex $(THESIS).tex -draftmode
-	pdflatex $(THESIS).tex 
-
-$(THESIS).bbl: $(THESIS).aux
-	bibtex $(THESIS).aux
-
-$(THESIS).aux: $(THESIS).bib
-	pdflatex $(THESIS).tex -draftmode
-	pdflatex $(THESIS).tex -draftmode
+all:	
+	pdflatex ${THESIS}.tex
+	bibtex ${THESIS}
+	bibtex ${THESIS}
+	pdflatex ${THESIS}.tex
+	pdflatex ${THESIS}.tex
 
 
 clean:
