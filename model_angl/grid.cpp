@@ -58,7 +58,7 @@ Cell Grid::get_future_cell(int x, int y) {
 }
 
 int Grid::order_from_coords(int x, int y) {
-    return y + (x*this->width);
+    return x + (y*this->width);
 }
 
 void Grid::print_present_grid() {
@@ -82,24 +82,32 @@ void Grid::get_future_grid(int month) {
     {
         for (int x = 0; x < this->width; ++x)
         {
-            state = present_grid[order].state;
             order = order_from_coords(x,y);
+            state = present_grid[order].state;
             
             if (month > 8) {
                 new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
-                new_state *= winter_coef;                
+                new_state *= winter_coef;
             } else {
                 new_state = state + this->fertility*state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
             }
+             
+            if (new_state < 0) {
+                new_state = 0;
+            }
+            
+            /*
             if (new_state > 0.0 && new_state < 100) {
                 future_grid[order].state = new_state;
             } else {
                 future_grid[order].state = 0;
-            }
+            }*/
+            future_grid[order].state = new_state;
+
         }
     }
 }
@@ -167,113 +175,29 @@ double Grid::get_average() {
 }
 
 double Grid::diffusion_operator(int x, int y) {
-    if (x > 0 && x < this->max_idx && y > 0 && y < this->max_idx) {
-        return diffusion_operator_middle(x,y);
+    double diffusion_operator = 0.0;
+    unsigned int count = 0;
+    
+    if (x > 0) {
+        diffusion_operator += get_present_cell(x-1, y).state;
+        count++;
     }
-    else if (x == 0 && y == 0) {
-        return diffusion_operator_0();
+    
+    if (x < this->max_idx) {
+        diffusion_operator += get_present_cell(x+1, y).state;
+        count++;
     }
-    else if (x == this->max_idx && y < this->max_idx && y > 0) {
-        return diffusion_operator_x_max(y);
+    
+    if (y > 0) {
+        diffusion_operator += get_present_cell(x, y-1).state;
+        count++;
     }
-    else if (x > 0 && x < this->max_idx && y == this->max_idx) {
-        return diffusion_operator_y_max(x);
+    
+    if (y < this->max_idx) {
+        count++;
+        diffusion_operator += get_present_cell(x, y+1).state;
     }
-    else if (x == 0 && y > 0 && y < this->max_idx) {
-        return diffusion_operator_x_0(y);
-    }
-    else if (y == 0 && x > 0 && x < this->max_idx) {
-        return diffusion_operator_y_0(x);
-    }
-    else if (x == this->max_idx && y == 0) {
-        return diffusion_operator_x_max_y_0();
-    }
-    else if (y == this->max_idx && x == 0) {
-        return diffusion_operator_y_max_x_0();
-    } else if (x == this->max_idx && y == this->max_idx) {
-        return diffusion_operator_max();        
-    } else {
-        cout << "diffusion_operator not found!" << endl;
-        cout << "x: " << x << " y: " << y << endl;
-    }
-    return -1.0;
-}
 
-double Grid::diffusion_operator_middle(int x, int y) {
-    double diffusion_operator =
-        get_present_cell(x, y-1).state +
-        get_present_cell(x, y+1).state +
-        get_present_cell(x+1, y).state +
-        get_present_cell(x-1, y).state +
-        (4*get_present_cell(x, y).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_x_0(int y) {
-    double diffusion_operator =
-        get_present_cell(0,y-1).state +
-        get_present_cell(0,y+1).state +
-        get_present_cell(1,y).state +
-        0 +
-        (4*get_present_cell(0, y).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_y_0(int x) {
-    double diffusion_operator =
-        get_present_cell(0,1).state +
-        get_present_cell(x+1,0).state +
-        get_present_cell(x-1,0).state +
-        (4*get_present_cell(x, 0).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_0() {
-    double diffusion_operator =
-        get_present_cell(0,1).state +
-        get_present_cell(1,0).state +
-        (4*get_present_cell(0, 0).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_y_max(int x) {
-    double diffusion_operator =
-        get_present_cell(x,this->max_idx-1).state +
-        get_present_cell(x+1,this->max_idx).state +
-        get_present_cell(x-1,this->max_idx).state +
-        (4*get_present_cell(0, 0).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_x_max(int y) {
-    double diffusion_operator =
-        get_present_cell(this->max_idx, y-1).state +
-        get_present_cell(this->max_idx, y+1).state +
-        get_present_cell(this->max_idx-1, y).state +
-        (4*get_present_cell(this->max_idx, y).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_max() {
-    double diffusion_operator =
-        get_present_cell(this->max_idx,this->max_idx-1).state +
-        get_present_cell(this->max_idx-1,this->max_idx).state +
-        (4*get_present_cell(this->max_idx, this->max_idx).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_x_max_y_0() {
-    double diffusion_operator =
-        get_present_cell(this->max_idx, 1).state +
-        get_present_cell(this->max_idx-1, 0).state +
-        (4*get_present_cell(this->max_idx, 0).state);
-    return diffusion_operator;
-}
-
-double Grid::diffusion_operator_y_max_x_0() {
-    double diffusion_operator =
-        get_present_cell(0, this->max_idx-1).state +
-        get_present_cell(1, this->max_idx).state +
-        (4*get_present_cell(0, this->max_idx).state);
+    diffusion_operator -= (count*get_present_cell(x, y).state);
     return diffusion_operator;
 }
