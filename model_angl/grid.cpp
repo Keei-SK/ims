@@ -12,9 +12,7 @@
 */
 
 void Grid::set_params(
-    double reproduction_rate, double max_population,
-    double migration_param
-) {
+    double reproduction_rate, double max_population, double migration_param) {
     this->fertility = (1 - reproduction_rate);
     this->mortality = (-reproduction_rate/max_population);
     //this->fertility = 
@@ -25,7 +23,7 @@ void Grid::set_params(
 
 double Grid::random_float(double min, double max)
 {
-    double r = (double)rand() / (double)RAND_MAX;
+    double r = (double)rand()/(double)RAND_MAX+1.0;
     return min + r * (max - min);
 }
 
@@ -77,7 +75,9 @@ void Grid::get_future_grid(int month) {
     double state = 0;
     double new_state = 0;
     int order = 0;
-    double winter_coef = 0.3;
+    double winter_coef;
+
+
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
@@ -85,12 +85,29 @@ void Grid::get_future_grid(int month) {
             order = order_from_coords(x,y);
             state = present_grid[order].state;
             
-            if (month > 8) {
+            if (month > 7) { //zima - populace zacina umirat
                 new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
+
+                int winter_intensity = (int) (1 + 3 * (rand() / RAND_MAX+1.0));
+                if (winter_intensity == 1){ //weak winter
+                    winter_coef = 0.82;
+                }
+                else if(winter_intensity == 2){ //medium strong winter
+                    winter_coef = 0.75;
+                }
+                else{ // strong winter
+                    winter_coef = 0.68;
+                }
                 new_state *= winter_coef;
-            } else {
+            }
+            else if (month >= 7) {
+                new_state = state +
+                this->mortality*pow(state,2) +
+                this->migration_param*diffusion_operator(x,y);
+            }
+            else {
                 new_state = state + this->fertility*state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);

@@ -36,15 +36,16 @@ void display()
     Grid grid(100);
 
     // reproduction_rate,  max_population, migration_pararameter
-    grid.set_params(0.99, 100, 0.05);
+    grid.set_params(0.85, 5000, 0.05);
     cout << "fert: " << grid.fertility << " mort: " << grid.mortality << endl;
     grid.fill_present_grid();
 
     int month = 0;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for(int t = 0; t < 48; t++) //simulate for t years
+    for(int t = 0; t < 48; t++) //simulate for t months
     {
+
         //DISPLAY THE MATRIX
         GLfloat minSize = 300.0f/grid.width;
 
@@ -90,7 +91,10 @@ void display()
             }
         }
         glutSwapBuffers();
-        usleep(10000);
+        string name = "Month " + std::to_string(((month+2) % 12)+1);
+        glutSetWindowTitle(name.c_str());
+        glutSetWindowTitle(name.c_str());
+        usleep(10000*100);
         month = t % 12;
         grid.get_future_grid(month);
         grid.copy_future_to_present_grid();
