@@ -24,26 +24,29 @@ public:
         double migration_param
     );
     void init_present_grid();
-    void print_present_grid();   
-    int order_from_coords(int x, int y);
-    Cell get_present_cell(int x, int y);
-    Cell get_future_cell(int x, int y);
+    void print_present_grid();
     void get_future_grid(int month);    
     void copy_future_to_present_grid();
+    void set_counter_measure(int counter_measure);
+    int order_from_coords(int x, int y);
+
+    vector<Cell> present_grid;
+    int width;
+private: 
+    
+    Cell get_present_cell(int x, int y);
+    Cell get_future_cell(int x, int y);    
     double get_average();
     double diffusion_operator(int x, int y);
     double random_double(double min, double max);
-    void fill_chunk_of_present_grid(int xmin, int ymin, int width, double value);
-    void set_counter_measure(int counter_measure);
+    void fill_chunk_of_present_grid(int xmin, int ymin, int width, double value);    
 
-    int width;
     int max_idx;
-    vector<Cell> present_grid;
     vector<Cell> future_grid;
     int time;
     double max_population;
     double fertility;
-    double mortality;    
+    double mortality;
     double migration_param;
     int counter_measure = 0;
 };

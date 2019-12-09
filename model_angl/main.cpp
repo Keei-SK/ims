@@ -9,8 +9,6 @@ using namespace std;
 #include "grid.hpp"
 #include "image.hpp"
 
-//int argc, char* argv[]
-
 void display();
 
 int main(int argc, char* argv[])

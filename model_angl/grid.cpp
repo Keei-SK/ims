@@ -9,8 +9,6 @@ void Grid::set_params(
     double reproduction_rate, double max_population, double migration_param) {
     this->fertility = (1 - reproduction_rate);
     this->mortality = (-reproduction_rate/max_population);
-    //this->fertility = 
-    //this->mortality = 0.5;
     this->max_population = max_population;
     this->migration_param = migration_param;
 }
@@ -32,7 +30,6 @@ void Grid::fill_chunk_of_present_grid(int xmin, int ymin, int width, double valu
 }
 
 void Grid::init_present_grid() {
-    //double init_state = -1/this->mortality;
     for (int y = 0; y < this->width; ++y)
     {
         for (int x = 0; x < this->width; ++x)
@@ -86,7 +83,7 @@ void Grid::get_future_grid(int month) {
     int order = 0;
     double winter_coef = 0.85;
     double deep_plow_coef = 0.5;
-    double shallow_plow_coef = 0.7;
+    double shallow_plow_coef = 0.85;
     double stutox_coef = 0.1;
 
     /* Set winter for the year
