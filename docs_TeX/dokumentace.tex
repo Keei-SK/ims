@@ -98,14 +98,24 @@ Pri práci byl využit objektově orientovaný jazyk C++. Tento jazyk je díky s
 K vizualizaci jednotlivých stavů celulárního automatu byla použita grafická knihovna OpenCV2 \verb|\cite{}|, ve které lze snadno implementovat vytváření jednoduchých obrázků.
 
 \subsection{Popis použitých metod a technologií}
-
-
+Pro účely implementace celulárního automatu byl použit jazyk C++ a jeho standardní knihovny. Grafické zobrazení výsledků zajišťuje knihovna OpenCV.
 
 \section{Koncepce modelu}
-todo
+Koncepce modelu vychází z informací popsaných v předchozí kapitole. Každá buňka obsahuje hodnotu, která udává populaci v dané buňce. Model pro výpočet hustoty populace byl převzat z vědecké článku \verb|\cite{}| časopisu Ecological Modelling vydavatelství Elsevier. Populace je v něm modelována následujícími rovnicemi:
+\begin{equation}
+N_{x,y}(t+1) = H(N_{x,y}(t) + \alpha*N_{x,y}(t) + \beta*N_{x,y}(t)^2 + \gamma\delta^2*N_{x,y}(t))
+\end{equation}
+\begin{equation}
+\delta^2*N_{x,y} = N_{x,y-1} + N_{x,y+1} + N_{x+1,y} + N_{x-1,y} - 4N_{x,y}
+\end{equation}
+\( N_{x,y}(t) \) - stav buňky na souřadnicích x,y v čase t\ \\
+\( \delta^2*N_{x,y} \) - diskretizovaný difuzní operátor kontrolující šíření buněk \\
+\( \alpha \) - porodnost \\
+\( \beta \) - úmrtnost \\
+\( \gamma \) - migrační operátor\\
 
 \section{Architektura simulačního modelu}
-Simulátor je složen ze dvou tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100 a představuje jeden ha. Počáteční stav automatu je generován náhodně. Simulace vždy běží po dobu 48 měsíců.
+Simulátor je složen ze tří tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu obsahuje 100 x 100 buněk. Počáteční stav automatu je generován náhodně a simulace vždy běží po dobu 48 měsíců. Simulaci lze spustit s jedním volitelným číselným parametrem, který spustí experiment s danou regulací populace.
 
 \subsection{Třída Cell}
 Třída \emph{Cell} implementuje jednu buňku celulárního automatu. Obsahuje informace o stavu této buňky, tedy její souřadnice a hustotu. Buňka odpovídá 1x1m pole.

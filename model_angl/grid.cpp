@@ -83,8 +83,8 @@ void Grid::get_future_grid(int month) {
     int order = 0;
     double winter_coef = 0.85;
     double deep_plow_coef = 0.5;
-    double shallow_plow_coef = 0.85;
-    double stutox_coef = 0.1;
+    double shallow_plow_coef = 0.75;
+    double stutox_coef = 0.15;
 
     /* Set winter for the year
        Months starts at 3 (March) - start of reproductive phase
@@ -126,12 +126,12 @@ void Grid::get_future_grid(int month) {
                 new_state = state + this->fertility*state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
-                // 4 April
-                if (month == 1 && this->counter_measure == SHALLOW_PLOW) {
+                // 2 - April
+                if (month == 2 && this->counter_measure == SHALLOW_PLOW) {
                     new_state *= shallow_plow_coef;
                 }
                 // 5 - August
-                if (month == 5 && this->counter_measure == STUTOX) {
+                if (month == 3 && this->counter_measure == STUTOX) {
                     new_state *= stutox_coef;
                 }
             }

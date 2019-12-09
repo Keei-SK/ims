@@ -4,9 +4,9 @@
 #include "cell.hpp"
 #include <vector>
 
-#define DEEP_PLOW 1
-#define SHALLOW_PLOW 2
-#define STUTOX 3
+#define DEEP_PLOW 2
+#define SHALLOW_PLOW 3
+#define STUTOX 4
 
 using namespace std;
 
@@ -32,6 +32,7 @@ public:
 
     vector<Cell> present_grid;
     int width;
+    int counter_measure = 0;
 private: 
     
     Cell get_present_cell(int x, int y);
@@ -47,8 +48,7 @@ private:
     double max_population;
     double fertility;
     double mortality;
-    double migration_param;
-    int counter_measure = 0;
+    double migration_param;    
 };
 
 #endif
