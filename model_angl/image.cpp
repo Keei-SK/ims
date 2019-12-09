@@ -74,7 +74,18 @@ void Image::create_image(Grid grid, int waitKeyTime, int month, bool showWindow 
         putText(image, name, Point2f(20,20), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(0, 0, 255, 255));
         namedWindow("Cellular automata 1ha", CV_WINDOW_AUTOSIZE);
         imshow("Cellular automata 1ha", image);
-        imwrite("./tmp/img.png", image);
+
+        /*if (grid.counter_measure == DEEP_PLOW && (real_month == 10 || real_month == 11)) {
+            counter_measure = " Hluboka orba";
+            imwrite("./tmp/hlub_orba"+std::to_string(real_month)+".png", image);
+        } else if (grid.counter_measure == SHALLOW_PLOW && (real_month == 4 || real_month == 5)){
+            counter_measure = " Melka orba";
+            imwrite("./tmp/melka_orba.png", image);
+        } else if (grid.counter_measure == STUTOX && (real_month == 5 || real_month == 6)){
+            counter_measure = " Stutox";
+            imwrite("./tmp/melka_orba.png", image);
+        }*/
+        //imwrite("./tmp/img.png", image);
     }
     waitKey(waitKeyTime);
 }

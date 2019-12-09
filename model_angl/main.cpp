@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
     }
 
     // reproduction_rate,  max_population, migration_pararameter
-    grid.set_params(0.8, 5000, 0.2);
+    grid.set_params(0.78, 5000, 0.2);
     grid.init_present_grid();    
     Image image(100, 100);
     

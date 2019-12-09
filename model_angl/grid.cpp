@@ -48,7 +48,7 @@ void Grid::init_present_grid() {
         randx = rand() % (this->width-rand_cnt);
         randy = rand() % (this->width-rand_cnt);
         
-        rand_dens = random_double(0.05, 0.1);
+        rand_dens = random_double(0.07, 0.1);
         this->fill_chunk_of_present_grid(randx,randy,rand_cnt,rand_dens);
     }
 }
@@ -84,7 +84,7 @@ void Grid::get_future_grid(int month) {
     double winter_coef = 0.85;
     double deep_plow_coef = 0.5;
     double shallow_plow_coef = 0.75;
-    double stutox_coef = 0.15;
+    double stutox_coef = 0.20;
 
     /* Set winter for the year
        Months starts at 3 (March) - start of reproductive phase
