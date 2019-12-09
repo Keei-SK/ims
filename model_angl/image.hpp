@@ -1,5 +1,5 @@
-#ifndef IMAGE_HPP
-#define IMAGE_HPP
+#ifndef IMAGE_H
+#define IMAGE_H
 
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -16,7 +16,7 @@
 #define CELL_4 Scalar(224,224,224)
 #define CELL_5 Scalar(255,255,255)
 #define CELL_6 Scalar(255,128,0)
-#define CELL_7 Scalar(255,0,0)
+#define CELL_7 Scalar(255,110,0)
 
 using namespace std;
 using namespace cv;
