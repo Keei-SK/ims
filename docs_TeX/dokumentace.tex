@@ -84,11 +84,11 @@ Experimenty slouží k demonstraci účinnosti jednotlivých protiopatření na 
 Jako zdroje informací byly použity odborné publikace a další zdroje dat, které se zabývají problematikou přemnožení tohoto hlodavce a také vědecké články zabývající se tvorbou celulárního automatu na tuto problematiku \cite{OurCA}. Důvěryhodnost informací byla ověřována vyhledáváním těchto informací v jiných odborných publikacích a potvrzená odborníkem z praxe. \verb|\cite{}|\verb|\cite{}|\verb|\cite{}|\verb|\cite{}|
 
 \subsection{Ověření validity/funkčnosti}
-Ověřování validity modelu bylo vykonáváno průběžnou simulací modelu, jež odpovídala chování populace hraboše polního popisovaného publikacemi \verb|\cite{}|\verb|\cite{}|\verb|\cite{}|. Úbytek populace v zimním období a populační exploze projevující se od jarních měsíců odpovídá také naměřeným údajům \verb|\cite{}|. Experimenty byly ověřovány na základě odborných článků, které popisují přibližně stejnou účinnost jednotlivých protiopatření a konzultací s odborníkem z Agroprůmyslu - Gabrielem Konczem ze Zemědělského družstva se sídlem v Períně na Slovensku.   
+Ověřování validity modelu bylo vykonáváno průběžnou simulací modelu, jež odpovídala chování populace hraboše polního popisovaného publikacemi \cite{diplom_Tkadlec}|\verb|\cite{}|\verb|\cite{}|. Úbytek populace v zimním období a populační exploze projevující se od jarních měsíců odpovídá také naměřeným údajům \verb|\cite{}|. Experimenty byly ověřovány na základě odborných článků, které popisují přibližně stejnou účinnost jednotlivých protiopatření a konzultací s odborníkem z Agroprůmyslu - Gabrielem Konczem ze Zemědělského družstva se sídlem v Períně na Slovensku.   
 
 \section{Rozbor tématu, použitých metod a technologií TODO}
 Abychom byli schopni vytvořit model populační exploze, je nutné znát údaje o hraboši polním \textit{(Microtus arvalis)} a jeho chování v průběhu roku.
- Zároveň je nutné znát vliv zimního období na hraboše polního. Rozmnožovací období trvá 7 měsíců a nastává od třetího do desátého měsíce. Vlivem nízké teploty a nedostatku potravy v zimě populace hraboše klesá. Koncem zimy je populace hraboše nejmenší, naopak nejvíce jedinců pozorujeme na konci léta.\verb|\cite{} TODO| Březost samice je 19 až 21 dní. Jedna samice za rok vrhne průměrně 5 až 6 mláďat, z čehož jsme vypočítali reprodukční koeficient pro model.\verb|\cite{}|. Na jednom hektaru se vyskytuje maximálně 3000 až 7000 jedinců. \verb|\cite{} TODO|
+ Zároveň je nutné znát vliv zimního období na hraboše polního. Rozmnožovací období trvá 7 měsíců a nastává od třetího do desátého měsíce. Vlivem nízké teploty a nedostatku potravy v zimě populace hraboše klesá. Koncem zimy je populace hraboše nejmenší, naopak nejvíce jedinců pozorujeme na konci léta \cite{Winter_temp}. Březost samice je 19 až 21 dní. Jedna samice za rok vrhne průměrně 5 až 6 mláďat, z čehož jsme vypočítali reprodukční koeficient pro model.\verb|\cite{}|. Na jednom hektaru se vyskytuje maximálně 3000 až 7000 jedinců. \cite{diplom_Tkadlec}
 
 \subsection{Popis použitých postupů}
 Při práci byl využit objektově orientovaný jazyk C++. Tento jazyk je díky své rychlosti vhodný pro vytváření simulací, které mohou být výpočetně náročné a jazyk s nižší rychlostí výpočtu by mohl simulaci výrazně zpomalit. 
@@ -99,7 +99,7 @@ K vizualizaci jednotlivých stavů celulárního automatu byla použita grafick�
 Pro účely implementace celulárního automatu byl použit jazyk C++ a jeho standardní knihovny. Grafické zobrazení výsledků zajišťuje knihovna OpenCV.
 
 \section{Koncepce modelu}
-Koncepce modelu vychází z informací popsaných v předchozí kapitole. Každá buňka obsahuje hodnotu, která udává populaci v dané buňce. Model pro výpočet hustoty populace byl převzat z vědecké článku \verb|\cite{}| časopisu Ecological Modelling vydavatelství Elsevier Ltd. Populace je v něm modelována následujícími rovnicemi:
+Koncepce modelu vychází z informací popsaných v předchozí kapitole. Každá buňka obsahuje hodnotu, která udává populaci v dané buňce. Model pro výpočet hustoty populace byl převzat z vědecké článku \cite{OurCA} časopisu Ecological Modelling. Populace je v něm modelována následujícími rovnicemi:
 \begin{equation}
 N_{x,y}(t+1) = H(N_{x,y}(t) + \alpha*N_{x,y}(t) + \beta*N_{x,y}(t)^2 + \gamma\delta^2*N_{x,y}(t))
 \end{equation}
@@ -111,8 +111,7 @@ N_{x,y}(t+1) = H(N_{x,y}(t) + \alpha*N_{x,y}(t) + \beta*N_{x,y}(t)^2 + \gamma\de
 \( \alpha \) - porodnost \\
 \( \beta \) - úmrtnost \\
 \( \gamma \) - migrační operátor\\
-
-
+Druhou rovnici bylo třeba upravit tak, aby populace respektovala hranice daného území.
 \section{Architektura simulačního modelu}
 Simulátor je složen ze dvou tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100 a představuje jeden hektár. Počáteční stav automatu je generován náhodně. Simulace vždy běží po dobu 48 měsíců.
 
@@ -130,7 +129,7 @@ Tato třída zajišťuje zobrazení grafického výsledku jednotlivých běhů s
 \section{Podstata simulačních experimentů a jejich průbeh}
 Cílem experimentů je demonstrovat šíření populace hraboše polního v úseku 1 hektar a jeho regulaci za použití jednotlivých protiopatření. Předmětem zkoumání je grafický výstup zobrazující nárůst a pokles populace a její migraci. 
 \subsection{Postup experimentování}
-Byly vykonány čtyři experimenty, jejichž výsledky byly konzultovány s Agronomem Gabrielem Konczem ze Zemědělského družstva v Períně na Slovensku. Výsledky byly kontrolované za použití publikací \verb|\cite{}| \verb|\cite{}| \verb|\cite{}|.
+Byly vykonány čtyři experimenty, jejichž výsledky byly konzultovány s Agronomem Gabrielem Konczem ze Zemědělského družstva v Períně na Slovensku. Výsledky byly kontrolované za použití publikací \cite{eagri_data} \cite{Winter_temp} \verb|\cite{}|.
 \subsection{Dokumentace jednotlivých experimentů}
 Experimenty byly vykonané v matici 100x100, která reprezentuje 1 hektar orné půdy. Jedna buňka reprezentuje populaci hrabošů na 1$m^{2}$. Simulace každého experimentu začíná ve třetím měsíci, kdy populace začíná růst. Všechny experimenty měly stejný reprodukční koeficient spočítaný na základě parametru porodnosti, úmrtnosti a migrace. Protiopatření je v experimentech použito jednou za rok, přičemž experimenty byly vykonávány po dobu 4 let.
 
