@@ -76,7 +76,7 @@
 \newpage
 
 \section{Úvod}
-Práce vznikla v rámci předmětu Modelování a simulace na Fakultě informačních technologií VUT v Brně. Popisuje model (\cite{slajdy}, snímek č. 7) celulárního automatu (\cite{slajdy} č. 209), jehož úkolem je predikce intenzity populace hraboše polního \textit{(Microtus arvalis)} a jeho regulace. Cílem práce je porovnání výsledků experimentů - jednotlivých protiopatření vůči hraboši polnímu na modelu popsaném ve článku \cite{OurCA}. Jde o protiopatření hloubkové orby, plytké orby a použití chemické látky - Stutox II s účinnou látkou Fosfidem zinečnatým. Tato protiopatření jsou dále popsaná ve článcích \verb|\cite{}|\verb|\cite{}|. 
+Práce vznikla v rámci předmětu Modelování a simulace na Fakultě informačních technologií VUT v Brně. Popisuje model (\cite{slajdy}, snímek č. 7) celulárního automatu (\cite{slajdy} č. 209), jehož úkolem je predikce intenzity populace hraboše polního \textit{(Microtus arvalis)} a jeho regulace. Cílem práce je porovnání výsledků experimentů - jednotlivých protiopatření vůči hraboši polnímu na modelu popsaném ve článku \cite{OurCA}. Jde o protiopatření hloubkové orby, plytké orby a použití chemické látky - Stutox II\cite{stutox-buy} s účinnou látkou Fosfidem zinečnatým který je aplikovaný do nor\cite{stutox-info}. Tato protiopatření jsou dále popsaná ve článcích \verb|\cite{}|\verb|\cite{}|. 
 
 Experimenty slouží k demonstraci účinnosti jednotlivých protiopatření na populaci hraboše polního. Předmětem zkoumání je grafický výstup zobrazující nárůst  a  pokles hustoty populace hraboše v jednotlivých měsících na poli o velikosti 1 hektaru. 
 
@@ -88,15 +88,12 @@ Ověřování validity modelu bylo vykonáváno průběžnou simulací modelu, j
 
 \section{Rozbor tématu, použitých metod a technologií TODO}
 Abychom byli schopni vytvořit model populační exploze, je nutné znát údaje o hraboši polním \textit{(Microtus arvalis)} a jeho chování v průběhu roku.
- Zároveň je nutné znát vliv zimního období na hraboše polního. Rozmnožovací období trvá 7 měsíců a nastává od třetího do desátého měsíce.\cite{diplom-Tkadlec} Vlivem nízké teploty a nedostatku potravy v zimě populace hraboše klesá. Koncem zimy je populace hraboše nejmenší, naopak nejvíce jedinců pozorujeme na konci léta.\cite{Winter-temp:online} Březost samice je 19 až 21 dní. Jedna samice za rok vrhne průměrně 5 až 6 mláďat\cite{diplom-Tkadlec}, z čehož jsme vypočítali reprodukční koeficient pro model.\cite{OurCA}. Na jednom hektaru se vyskytuje maximálně 3000 až 7000 jedinců. \verb|\cite{}|
+ Zároveň je nutné znát vliv zimního období na hraboše polního. Rozmnožovací období trvá 7 měsíců a nastává od třetího do desátého měsíce.\cite{diplom-Tkadlec} Vlivem nízké teploty a nedostatku potravy v zimě populace hraboše klesá. Koncem zimy je populace hraboše nejmenší, naopak nejvíce jedinců pozorujeme na konci léta.\cite{Winter-temp:online} Březost samice je 19 až 21 dní. Jedna samice za rok vrhne průměrně 5 až 6 mláďat\cite{diplom-Tkadlec}, z čehož jsme vypočítali reprodukční koeficient pro model.\cite{OurCA}. Na jednom hektaru se vyskytuje maximálně 3000 až 7000 jedinců. \cite{hustoty}
 
-\subsection{Popis použitých postupů}
+\subsection{Popis použitých metod a technologií}
 Při práci byl využit objektově orientovaný jazyk C++. Tento jazyk je díky své rychlosti vhodný pro vytváření simulací, které mohou být výpočetně náročné a jazyk s nižší rychlostí výpočtu by mohl simulaci výrazně zpomalit. 
 
 K vizualizaci jednotlivých stavů celulárního automatu byla použita grafická knihovna OpenCV2 \cite{opencv2}, ve které lze snadno implementovat vytváření jednoduchých obrázků. 
-
-\subsection{Popis použitých metod a technologií}
-Pro účely implementace celulárního automatu byl použit jazyk C++ a jeho standardní knihovny. Grafické zobrazení výsledků zajišťuje knihovna OpenCV.
 
 \section{Koncepce modelu}
 Koncepce modelu vychází z informací popsaných v předchozí kapitole. Každá buňka obsahuje hodnotu, která udává populaci v dané buňce. Model pro výpočet hustoty populace byl převzat z vědecké článku \cite{OurCA} časopisu Ecological Modelling vydavatelství Elsevier Ltd. Populace je v něm modelována následujícími rovnicemi:
@@ -137,7 +134,7 @@ Experimenty byly vykonané v matici 100x100, která reprezentuje 1 hektar orné 
 \subsubsection{Experiment 1}
 \textbf{OBRAZOK JAR}
 
-V tomto experimentu nebylo použito žádné protiopatření. Cílem experimentu bylo validovat model, predikovat nárůst populace v průběhu letních období začínajících od března a naopak pokles populace v měsících zimních, tedy listopad až únor. 
+V tomto experimentu nebylo použito žádné protiopatření. Cílem experimentu bylo validovat model, predikovat nárůst populace v průběhu letních období začínajících od malé populace v březnu a naopak pokles populace v měsících zimních, tedy listopad až únor. 
 
 \textbf{OBRAZOK ZIMA}
 
@@ -172,8 +169,8 @@ Výsledek prokázal významný dopad na počty hrabošů, ale k okamžité decim
 \section{Závěr}
 
 
-\section{Literatura}
 
+\section{Literatura}
 
 \newpage
 \bibliographystyle{czplain}
