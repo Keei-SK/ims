@@ -76,25 +76,46 @@
 \newpage
 
 \section{Úvod}
-Táto práca vznikla v rámci predmetu Modelování a simulace na Fakulte informačných technológií VUT v Brne. Práca popisuje model (\cite{slajdy}, snímok č. 7) celulárneho automatu (\cite{slajdy} č. 209), ktorého úlohou je predikcia intenzity populácie hraboša poľného \textit{(Microtus arvalis)} a jeho regulácia. Cieľom práce je porovnanie výsledkov experimentov - účinnosti jednotlivých protiopatrení voči hrabošovi poľnému na modeli popísanom v článku \cite{XYZ} . Ide o protiopatrenia hĺbkovej orby, plytkej orby a použitie chemickej látky - Stutox II s účinnou látkou Fosfidom zinečnatým. Tieto protiopatrenia sú ďalej popísané v článkoch \citep{XYZ} \cite{XYZ}. 
+Táto práca vznikla v rámci predmetu Modelování a simulace na Fakulte informačných technológií VUT v Brne. Práca popisuje model (\cite{slajdy}, snímok č. 7) celulárneho automatu (\cite{slajdy} č. 209), ktorého úlohou je predikcia intenzity populácie hraboša poľného \textit{(Microtus arvalis)} a jeho regulácia. Cieľom práce je porovnanie výsledkov experimentov - jednotlivých protiopatrení, voči hrabošovi poľnému na modeli popísanom v článku \verb|\cite{}|. Ide o protiopatrenia hĺbkovej orby, plytkej orby a použitie chemickej látky - Stutox II s účinnou látkou Fosfidom zinečnatým. Tieto protiopatrenia sú ďalej popísané v článkoch \verb|\cite{}|\verb|\cite{}|. 
+
+
+Zmyslom experimentov je demonštrovať účinnosť jednotlivých protiopatrení na populáciu hraboša poľného. Predmetom skúmania je grafický výstup zobrazujúci nárast a pokles hustoty populácie hraboša poľného v jednotlivých mesiacoch na poli o veľkosti 1 hektáru.
+
 \subsection{Zdroje faktů}
+Ako zdroje informácií boli použité odborné publikácie zaoberajúce sa problematikou premnoženia hraboša poľného, vedecké články zaoberajúce satvorbou celulárneho automatu zameraného na túto problematiku. Dôveryhodnosť informácií bola overovaná vyhľadávaním tychto informácií v iných odborných publikáciách a potvrdená odborníkmi z praxe. \verb|\cite{}|\verb|\cite{}|\verb|\cite{}|\verb|\cite{}|
 
 \subsection{Ověření validity/funkčnosti}
+Overovanie validity modelu bolo vykonávané priebežne simulácia modelu zodpovedala správaniu populácie hraboša poľného ako to popisujú publikácie \verb|\cite{}|\verb|\cite{}|\verb|\cite{}|. Úbytok populácie v zimnom období a populačná explózia prejavujúca sa od jarných mesiacov zodpovedá aj nameraným datam\verb|\cite{}|. Overovanie experimentov bolo vykonané na základe odborných článkov popisujúcich približne rovnakú účinnosť jednotlivých protiopatrení a konzultáciou s odborníkom z Agropriemyslu - Gabriel Koncz z Poľnohospodárskeho družstva so sídlom v Períne na Slovensku.
+
+\section{Rozbor tématu, použitých metod a technologií TODO čísla} 
+K vytvoreniu modelu populačnej explózie je potreba vedieť údaje o hrabošovi poľnom \textit{(Microtus arvalis)} a jeho chovaní v priebehu roka. Zároveň je potreba vedieť ako ovplivňujú hraboša poľného zimné obdobia. Rozmnožovacie obdobie je v treťom až desiatom mesiaci. Dĺžka tehotenstva je 19 až 21 dní. Veľkosť vrhu za rok u jednej samice je 1 až 12 mláďat, avšak najčastejšie 5 až 6. Samica vrhne za rok 1 až 4 krát, pričom mláďa pohlavne dospieva vo veku minimálne dvoch týždňov. Priemerná dĺžka života hraboša poľného je 2,5 mesiaca. \verb|\cite{}|. Na jednom hektári vyskytuje maximálne 3000 až 7000 jedincov. \verb|\cite{} TODO| V populácii hrabošov tesne prevyšujú samice a to približne s 60\% prevahou. 
 
 
-\section{Rozbor tématu, použitých metod a technologií}
 \subsection{Popis použitých postupů}
+Pri práci byl využit objektově orientovaný jazyk C++. Tento jazyk je díky své rychlosti vhodný pro vytváření simulací, které mohou být výpočetně náročné a jazyk s nižší rychlostí výpočtu by mohl simulaci výrazně zpomalit.
+
+
+K vizualizaci jednotlivých stavů celulárního automatu byla použita grafická knihovna OpenCV2 \verb|\cite{}|, ve které lze snadno implementovat vytváření jednoduchých obrázků.
 
 \subsection{Popis použitých metod a technologií}
+
 
 
 \section{Koncepce modelu}
 todo
 
 \section{Architektura simulačního modelu}
-\subsection{Třída Grid}
+Simulátor je složen ze dvou tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100 a představuje jeden ha. Počáteční stav automatu je generován náhodně. Simulace vždy běží po dobu 48 měsíců.
+
 \subsection{Třída Cell}
-todo
+Třída \emph{Cell} implementuje jednu buňku celulárního automatu. Obsahuje informace o stavu této buňky, tedy její souřadnice a hustotu. Buňka odpovídá 1x1m pole.
+
+\subsection{Třída Grid}
+Třída grid reprezentuje mřížku celulárního automatu a zodpovídá za jeho chování. Také obsahuje základní informace modelu. Například velikost mřížky, porodnost, úmrtnost a další. Dále se v ní nachází metody umožňující spuštění a řízení simulace. V této třídě se také nachází metoda emph{init\_present\_grid()}. Ta vytváří čtyřicet shluků maximálně dvaceti buněk, které náhodně rozmístí do mřížky.
+Ovšem nejdůležitější metodou je \emph{get\_future\_grid()}, která ze současného stavu automatu vypočítá ten následující. V ní je definováno chování modelu i jeho změna při vykonávání jednotlivých experimentů.
+
+\subsection{Třída Image}
+Tato třída zajišťuje zobrazení grafického výsledku jednotlivých běhů simulace. Její hlavní metodou je \emph{create\_image()}, která vykresluje současný stav mřížky automatu.
 
 
 \section{Podstata simulačních experimentů a jejich průbeh}
