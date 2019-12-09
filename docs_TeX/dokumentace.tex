@@ -76,7 +76,7 @@
 \newpage
 
 \section{Úvod}
-Táto práca vznikla v rámci predmetu Modelování a simulace na Fakulte informačných technológií VUT v Brne. Práca popisuje model (\cite{slajdy}, snímok č. 7) celulárneho automatu (\cite{slajdy} č. 209), ktorého úlohou je predikcia intenzity populácie hraboša poľného \textit{(Microtus arvalis)} a jeho regulácia. Cieľom práce je porovnanie výsledkov experimentov - účinnosti jednotlivých protiopatrení voči hrabošovi poľnému na modeli popísanom v článku \cite{XYZ} . Ide o protiopatrenia hĺbkovej orby, plytkej orby a použitie chemickej látky - Stutox II s účinnou látkou Fosfidom zinečnatým. Tieto protiopatrenia sú ďalej popísané v článkoch \citep{XYZ} \cite{XYZ}. 
+Táto práca vznikla v rámci predmetu Modelování a simulace na Fakulte informačných technológií VUT v Brne. Práca popisuje model (\cite{slajdy}, snímok č. 7) celulárneho automatu (\cite{slajdy} č. 209), ktorého úlohou je predikcia intenzity populácie hraboša poľného \textit{(Microtus arvalis)} a jeho regulácia. Cieľom práce je porovnanie výsledkov experimentov - účinnosti jednotlivých protiopatrení voči hrabošovi poľnému na modeli popísanom v článku \verb|\cite{}|. Ide o protiopatrenia hĺbkovej orby, plytkej orby a použitie chemickej látky - Stutox II s účinnou látkou Fosfidom zinečnatým. Tieto protiopatrenia sú ďalej popísané v článkoch \verb|\cite{}| \verb|\cite{}|. 
 \subsection{Zdroje faktů}
 
 \subsection{Ověření validity/funkčnosti}
@@ -92,7 +92,7 @@ Táto práca vznikla v rámci predmetu Modelování a simulace na Fakulte inform
 todo
 
 \section{Architektura simulačního modelu}
-Simulátor je složen ze dvou tříd \emph{Grid} a \emph{Cell}.
+Simulátor je složen ze dvou tříd \emph{Grid} a \emph{Cell}. Třída \emph{Cell} implementuje jednu buňku celulárního automatu. Obsahuje informace o stavu této buňky, tedy její souřadnice a hustotu. Buňka odpovídá 1x1m pole. Třída grid reprezentuje mřížku celulárního automatu a zodpovídá za jeho chování. Také obsahuje základní informace modelu, například velikost mřížky, porodnost, úmrtnost a další. Dále se v ní nachází metody umožňující spustit a řídit simulaci. Nejdůležitější z nich je \emph{get\_future\_grid}, která ze současného stavu automatu vypočítá ten následující.
 \subsection{Třída Grid}
 \subsection{Třída Cell}
 todo

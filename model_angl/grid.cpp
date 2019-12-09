@@ -110,17 +110,15 @@ void Grid::get_future_grid(int month) {
             order = order_from_coords(x,y);
             state = present_grid[order].state;
 
+            // 7 - October
             if (month >= 7) {
                 new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
                 if (month > 7) {
                     new_state *= winter_coef;
-                    if (month == 10 && this->counter_measure == DEEP_PLOW) {
+                    if (month == 7 && this->counter_measure == DEEP_PLOW) {
                         new_state *= deep_plow_coef;
-                    }
-                    if (month == 8 && this->counter_measure == STUTOX) {
-                        new_state *= stutox_coef;
                     }
                 }
             }
@@ -128,17 +126,23 @@ void Grid::get_future_grid(int month) {
                 new_state = state + this->fertility*state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
-                if (month == 4 && this->counter_measure == SHALLOW_PLOW) {
+                // 4 April
+                if (month == 1 && this->counter_measure == SHALLOW_PLOW) {
                     new_state *= shallow_plow_coef;
+                }
+                // 5 - August
+                if (month == 5 && this->counter_measure == STUTOX) {
+                    new_state *= stutox_coef;
                 }
             }
              
             if (new_state < 0) {
                 new_state = 0;
             }
-            future_grid[order].state = new_state;
+            this->future_grid[order].state = new_state;
         }
     }
+    copy_future_to_present_grid();
 }
 
 void Grid::copy_future_to_present_grid() {

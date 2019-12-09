@@ -30,7 +30,6 @@ int main(int argc, char* argv[])
     {
         month = t % 12;
         grid.get_future_grid(month);
-        grid.copy_future_to_present_grid();
         image.create_image(grid, 1000, month, true);
     }
 
