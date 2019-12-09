@@ -92,17 +92,17 @@ Táto práca vznikla v rámci predmetu Modelování a simulace na Fakulte inform
 todo
 
 \section{Architektura simulačního modelu}
-Simulátor je složen ze dvou tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100. Počáteční stav automatu je generován náhodně. Simulace vždy běží po dobu 48 měsíců.
+Simulátor je složen ze dvou tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100 a představuje jeden ha. Počáteční stav automatu je generován náhodně. Simulace vždy běží po dobu 48 měsíců.
 
 \subsection{Třída Cell}
 Třída \emph{Cell} implementuje jednu buňku celulárního automatu. Obsahuje informace o stavu této buňky, tedy její souřadnice a hustotu. Buňka odpovídá 1x1m pole.
 
 \subsection{Třída Grid}
-Třída grid reprezentuje mřížku celulárního automatu a zodpovídá za jeho chování. Také obsahuje základní informace modelu. Například velikost mřížky, porodnost, úmrtnost a další. Dále se v ní nachází metody umožňující spuštění a řízení simulace. V této třídě se také nachází metoda emph{init_present_grid()}. Ta vytváří čtyřicet shluků maximálně dvaceti buněk, které náhodně rozmístí do mřížky.
+Třída grid reprezentuje mřížku celulárního automatu a zodpovídá za jeho chování. Také obsahuje základní informace modelu. Například velikost mřížky, porodnost, úmrtnost a další. Dále se v ní nachází metody umožňující spuštění a řízení simulace. V této třídě se také nachází metoda emph{init\_present\_grid()}. Ta vytváří čtyřicet shluků maximálně dvaceti buněk, které náhodně rozmístí do mřížky.
 Ovšem nejdůležitější metodou je \emph{get\_future\_grid()}, která ze současného stavu automatu vypočítá ten následující. V ní je definováno chování modelu i jeho změna při vykonávání jednotlivých experimentů.
 
 \subsection{Třída Image}
-Tato třída zajišťuje zobrazení grafického výsledku jednotlivých běhů simulace. Její hlavní metodou je \emph{create_image()}, která vykresluje současný stav mřížky automatu.
+Tato třída zajišťuje zobrazení grafického výsledku jednotlivých běhů simulace. Její hlavní metodou je \emph{create\_image()}, která vykresluje současný stav mřížky automatu.
 
 
 \section{Podstata simulačních experimentů a jejich průbeh}
