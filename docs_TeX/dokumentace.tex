@@ -6,6 +6,7 @@
 \usepackage{times}
 \usepackage{paralist}
 \usepackage{graphicx}
+\graphicspath{ {./img/} }
 \usepackage{textcomp}
 \usepackage{enumitem}
 \usepackage{amssymb}
@@ -135,37 +136,79 @@ Byly vykonány čtyři experimenty, jejichž výsledky byly konzultovány s Agro
 Experimenty byly vykonané v matici 100x100, která reprezentuje 1 hektar orné půdy. Jedna buňka reprezentuje populaci hrabošů na 1$m^{2}$. Simulace každého experimentu začíná ve třetím měsíci, kdy populace začíná růst. Všechny experimenty měly stejný reprodukční koeficient spočítaný na základě parametru porodnosti, úmrtnosti a migrace. Protiopatření je v experimentech použito jednou za rok, přičemž experimenty byly vykonávány po dobu 4 let.
 
 \subsubsection{Experiment 1}
-\textbf{OBRAZOK JAR}
+\begin{figure}[h]
+\begin{center}  
+    \includegraphics[width=.4\linewidth]{bez_regul1.png}
+    \caption{Stav populace v lednu}
+    \label{pic:exp1_obr1}
+\end{center}
+\end{figure}
 
 V tomto experimentu nebylo použito žádné protiopatření. Cílem experimentu bylo validovat model, predikovat nárůst populace v průběhu letních období začínajících od března a naopak pokles populace v měsících zimních, tedy listopad až únor. 
 
-\textbf{OBRAZOK ZIMA}
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=.4\linewidth]{bez_regul10.png}
+    \caption{Stav populace v říjnu}
+    \label{pic:exp1_obr2}
+\end{center}
+\end{figure}
 
 Výsledek experimentu prokázal validitu modelu vůči informací z výzkumů \cite{fluktuace} a datům \cite{Voles-popul-data:online}
 \subsubsection{Experiment 2}
 \textbf{OBRAZOK PRED ORBOU}
 V experimentě byly použity protiopatření hluboké orby, která by podle Marty Heroldové z Ústavu ekologie lesa Lesnícké a dřevářské fakulty MENDELU měla zredukovat populaci přibližně o 50\%, přičemž je vykonávána jednou ročně v říjnu. 
 
-\textbf{OBRAZOK PO ORBE}
+V experimentě byly použity protiopatření hluboké orby, která by podle Marty Heroldové z Ústavu ekologie lesa Lesnícké a dřevářské fakulty MENDELU měla zredukovat populaci přibližně o 50\%, přičemž je vykonávána jednou ročně v říjnu. 
+
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=.4\linewidth]{hlub_orba11.png}
+    \caption{Stav populace po hluboké orbě}
+    \label{exp2_obr2}
+\end{center}
+\end{figure}
 
 Výsledek experimentu prokázal přibližně poloviční pokles populace. Jelikož se hluboká orba vykonává před zimou, je efektivním způsobem, jak redukovat stav hrabošů na několik měsíců dopředu, což prokazuje tento experiment.
-
-\textbf{OBRAZOK V ZIME}
+\newpage
 
 \subsubsection{Experiment 3}
 \textbf{OBRAZOK PRED ORBOU}
 V experimentu byly použity protiopatření mělké orby, která podle dostupných informací od Agronoma Gabriela Koncza redukuje populaci přibližně o 20\%, přičemž je vykonávána jednou ročně v dubnu. 
 
-\textbf{OBRAZOK PO ORBE}
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=.4\linewidth]{melka_orba5.png}
+    \caption{Stav populace před mělkou orbou}
+    \label{exp3_obr2}
+\end{center}
+\end{figure}
 
 Výsledek experimentu prokázal mírný pokles populace. Mělká orba vykonávána na jaře zasahuje až 15 cm pod povrch a jejím cílem je provzdušnit půdu. Snížení počtu hrabošů dosahuje do 20\% a to kvůli nízkému zásahu pod povrch země, čímž jsou zasaženy jenom plytké nory. 
 
-
-\textbf{OBRAZOK V ZIME}
+\newpage
 \subsubsection{Experiment 4}
 Tento experiment testuje dopad jedu Stutox II použitého v květnu každý rok na rostoucí populaci.
-OBRAZEK
+
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=.4\linewidth]{stutox5.png}
+    \caption{Stav populace před použitím jedu Stutox II}
+    \label{exp4_obr1}
+\end{center}
+\end{figure}
+
 Výsledek prokázal významný dopad na počty hrabošů, ale k okamžité decimaci populace nedošlo. Nicméně velké snížení populace se přeneslo do zimy, kde populace téměř úplně vymřela. Další rok se populace ve velmi malém rozsahu pokusila o obnovení, ale její počty nebyly k tomuto účelu dostatečné a přes zimu se zhroutila úplně.
+
+\begin{figure}[h]
+\begin{center}
+    \includegraphics[width=.4\linewidth]{stutox5.png}
+    \caption{Stav populace před použitím jedu Stutox II}
+    \label{exp4_obr2}
+\end{center}
+\end{figure}
+
+\newpage
 \subsection{Zhodnocení experimentů}
 
 
