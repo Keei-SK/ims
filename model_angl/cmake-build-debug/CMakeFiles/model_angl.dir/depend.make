@@ -10,5 +10,6 @@ CMakeFiles/model_angl.dir/grid.cpp.o: ../grid.hpp
 
 CMakeFiles/model_angl.dir/main.cpp.o: ../cell.hpp
 CMakeFiles/model_angl.dir/main.cpp.o: ../grid.hpp
+CMakeFiles/model_angl.dir/main.cpp.o: ../image.hpp
 CMakeFiles/model_angl.dir/main.cpp.o: ../main.cpp
 
