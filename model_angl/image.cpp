@@ -74,7 +74,6 @@ void Image::create_image(Grid grid, int waitKeyTime, int month, bool showWindow 
         putText(image, name, Point2f(20,20), FONT_HERSHEY_SIMPLEX, 0.8, Scalar(0, 0, 255, 255));
         namedWindow("Cellular automata 1ha", CV_WINDOW_AUTOSIZE);
         imshow("Cellular automata 1ha", image);
-        imwrite("./tmp/img.png", image);
     }
     waitKey(waitKeyTime);
 }
