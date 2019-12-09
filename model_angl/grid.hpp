@@ -5,7 +5,8 @@
 #include <vector>
 
 #define DEEP_PLOW 1
-#define STUTOX 2
+#define SHALLOW_PLOW 2
+#define STUTOX 3
 
 using namespace std;
 

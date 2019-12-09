@@ -17,6 +17,7 @@
 #define CELL_5 Scalar(255,255,255)
 #define CELL_6 Scalar(255,128,0)
 #define CELL_7 Scalar(255,0,0)
+#define CELL_TREES Scalar(50,205,50)
 
 using namespace std;
 using namespace cv;

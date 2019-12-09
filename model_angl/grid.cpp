@@ -86,9 +86,13 @@ void Grid::get_future_grid(int month) {
     int order = 0;
     double winter_coef = 0.85;
     double deep_plow_coef = 0.5;
+    double shallow_plow_coef = 0.7;
     double stutox_coef = 0.1;
 
-    /* Set winter for the year */
+    /* Set winter for the year
+       Months starts at 3 (March) - start of reproductive phase
+    */
+
     if (month > 7) {
         int winter_intensity = (int) (1 + 3 * (rand() / RAND_MAX+1.0));
         if (winter_intensity == 1){ //weak winter
@@ -127,6 +131,9 @@ void Grid::get_future_grid(int month) {
                 new_state = state + this->fertility*state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
+                if (month == 4 && this->counter_measure == SHALLOW_PLOW) {
+                    new_state *= shallow_plow_coef;
+                }
             }
              
             if (new_state < 0) {
