@@ -83,7 +83,7 @@ void Grid::get_future_grid(int month) {
     int order = 0;
     double winter_coef = 0.85;
     double deep_plow_coef = 0.5;
-    double shallow_plow_coef = 0.75;
+    double shallow_plow_coef = 0.80;
     double stutox_coef = 0.20;
 
     /* Set winter for the year
