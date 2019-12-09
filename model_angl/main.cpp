@@ -13,17 +13,21 @@ using namespace std;
 
 void display();
 
-int main()
-{
+int main(int argc, char* argv[])
+{   
     srand(time(NULL));
     Grid grid(100);
+    if (argc == 2) {
+        grid.set_counter_measure(atoi(argv[1]));
+    }
 
     int sim_months = 48;
     // reproduction_rate,  max_population, migration_pararameter
     grid.set_params(0.85, 5000, 0.2);
     grid.init_present_grid();
     int month = 0;
-    Image image(600, 600);
+    Image image(100, 100);
+    
     for (int t = 0; t < sim_months; ++t)
     {
         month = t % 12;

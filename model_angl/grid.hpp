@@ -8,7 +8,7 @@ using namespace std;
 
 class Grid {
 public:
-    Grid(int width) {
+    Grid(int width) {        
         int size = width*width;
         present_grid.reserve(size);
         future_grid.reserve(size);
@@ -30,6 +30,7 @@ public:
     double diffusion_operator(int x, int y);
     double random_double(double min, double max);
     void fill_chunk_of_present_grid(int xmin, int ymin, int width, double value);
+    void set_counter_measure(int counter_measure);
 
     int width;
     int max_idx;
@@ -40,6 +41,7 @@ public:
     double fertility;
     double mortality;    
     double migration_param;
+    int counter_measure = 0;
 };
 
 #endif

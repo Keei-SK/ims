@@ -1,6 +1,10 @@
 #include "grid.hpp"
 #include <math.h>
 
+void Grid::set_counter_measure(int counter_measure) {
+    this->counter_measure = counter_measure;
+}
+
 void Grid::set_params(
     double reproduction_rate, double max_population, double migration_param) {
     this->fertility = (1 - reproduction_rate);
@@ -41,7 +45,7 @@ void Grid::init_present_grid() {
     int randy = 0;
     int rand_cnt = 0;
     double rand_dens;
-    for (int i = 0; i < 30; ++i)
+    for (int i = 0; i < 40; ++i)
     {   
         rand_cnt = rand() % 20;
         randx = rand() % (this->width-rand_cnt);
@@ -103,17 +107,13 @@ void Grid::get_future_grid(int month) {
             order = order_from_coords(x,y);
             state = present_grid[order].state;
             
-            if (month > 7) { //zima - populace zacina umirat
+            if (month >= 7) {
                 new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
-
-                new_state *= winter_coef;
-            }
-            else if (month >= 7) {
-                new_state = state +
-                this->mortality*pow(state,2) +
-                this->migration_param*diffusion_operator(x,y);
+                if (month > 7) {
+                    new_state *= winter_coef;
+                }
             }
             else {
                 new_state = state + this->fertility*state +

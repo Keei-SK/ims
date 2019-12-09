@@ -6,11 +6,9 @@ all: simulator
 
 simulator:	$(OBJ_FILES)
 		$(CC) $(OBJ_FILES) -o $@ $(CFLAGS) $(OPENCV_FLAGS)
-		rm -f *.o
 
 main.o: main.cpp cell.hpp grid.hpp image.hpp
 	$(CC) -o $@ -c $<  $(CFLAGS) $(OPENCV_FLAGS)
-
 
 clean:
 	rm -f *.o simulator 

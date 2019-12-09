@@ -1,7 +1,7 @@
 #include "image.hpp"
 
 Image::Image(unsigned long width, unsigned long height) {
-    this->imgSize = Size2d(width+GRID_INC, height+GRID_INC);
+    this->imgSize = Size2d(width*GRID_INC+GRID_INC, height*GRID_INC+GRID_INC);
     this->width = width;
     this->height = height;
 }
