@@ -9,8 +9,6 @@ using namespace std;
 #include "grid.hpp"
 #include "image.hpp"
 
-//int argc, char* argv[]
-
 void display();
 
 int main(int argc, char* argv[])
@@ -21,18 +19,16 @@ int main(int argc, char* argv[])
         grid.set_counter_measure(atoi(argv[1]));
     }
 
-    int sim_months = 48;
     // reproduction_rate,  max_population, migration_pararameter
     grid.set_params(0.85, 5000, 0.2);
-    grid.init_present_grid();
-    int month = 0;
+    grid.init_present_grid();    
     Image image(100, 100);
     
-    for (int t = 0; t < sim_months; ++t)
+    int month = 0;
+    for (int t = 0; t < 48; ++t)
     {
         month = t % 12;
         grid.get_future_grid(month);
-        grid.copy_future_to_present_grid();
         image.create_image(grid, 1000, month, true);
     }
 
