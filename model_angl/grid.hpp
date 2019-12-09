@@ -4,6 +4,9 @@
 #include "cell.hpp"
 #include <vector>
 
+#define DEEP_PLOW 1
+#define STUTOX 2
+
 using namespace std;
 
 class Grid {

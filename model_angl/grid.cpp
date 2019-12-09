@@ -85,6 +85,8 @@ void Grid::get_future_grid(int month) {
     double new_state = 0;
     int order = 0;
     double winter_coef = 0.85;
+    double deep_plow_coef = 0.5;
+    double stutox_coef = 0.1;
 
     /* Set winter for the year */
     if (month > 7) {
@@ -106,13 +108,19 @@ void Grid::get_future_grid(int month) {
         {
             order = order_from_coords(x,y);
             state = present_grid[order].state;
-            
+
             if (month >= 7) {
                 new_state = state +
                 this->mortality*pow(state,2) +
                 this->migration_param*diffusion_operator(x,y);
                 if (month > 7) {
                     new_state *= winter_coef;
+                    if (month == 10 && this->counter_measure == DEEP_PLOW) {
+                        new_state *= deep_plow_coef;
+                    }
+                    if (month == 8 && this->counter_measure == STUTOX) {
+                        new_state *= stutox_coef;
+                    }
                 }
             }
             else {
