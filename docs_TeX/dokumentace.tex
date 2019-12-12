@@ -77,7 +77,10 @@
 \newpage
 
 \section{Úvod}
-Práce vznikla v rámci předmětu Modelování a simulace na Fakultě informačních technologií VUT v Brně. Popisuje model (\cite{slajdy}, snímek č. 7) celulárního automatu (\cite{slajdy} č. 209), jehož úkolem je predikce intenzity populace hraboše polního \textit{(Microtus arvalis)} a jeho regulace. Cílem práce je porovnání výsledků experimentů - jednotlivých protiopatření vůči hraboši polnímu na modelu popsaném ve článku \cite{OurCA}. Jde o protiopatření hloubkové orby, plytké orby a použití chemické látky - Stutox II s účinnou látkou Fosfidem zinečnatým který je aplikovaný do nor. Tato protiopatření jsou dále popsaná ve článku \cite{ochrana}.
+Práce vznikla v rámci předmětu Modelování a simulace na Fakultě informačních technologií VUT v Brně. Popisuje model (\cite{slajdy}, snímek č. 7) celulárního automatu (\cite{slajdy} č. 209), jehož úkolem je predikce intenzity populace hraboše polního \textit{(Microtus arvalis)} a jeho regulace. 
+
+
+Cílem práce je porovnání výsledků experimentů - jednotlivých protiopatření vůči hraboši polnímu na modelu popsaném ve článku \cite{OurCA}. Jde o protiopatření hloubkové orby, plytké orby a použití chemické látky - Stutox II s účinnou látkou Fosfidem zinečnatým který je aplikovaný do nor. Tato protiopatření jsou dále popsaná ve článku \cite{ochrana}.
 
 Experimenty slouží k demonstraci účinnosti jednotlivých protiopatření na populaci hraboše polního. Předmětem zkoumání je grafický výstup zobrazující nárůst  a  pokles hustoty populace hraboše v jednotlivých měsících na poli o velikosti 1 hektaru. 
 
@@ -91,12 +94,20 @@ Ověřování validity modelu bylo vykonáváno průběžnou simulací modelu, j
 Abychom byli schopni vytvořit model populační exploze, je nutné znát údaje o hraboši polním \textit{(Microtus arvalis)} a jeho chování v průběhu roku.
  Zároveň je nutné znát vliv zimního období na hraboše polního. Rozmnožovací období trvá 7 měsíců a nastává od třetího do desátého měsíce.\cite{diplom-Tkadlec} Vlivem nízké teploty a nedostatku potravy v zimě populace hraboše klesá. Koncem zimy je populace hraboše nejmenší, naopak nejvíce jedinců pozorujeme na konci léta.\cite{Winter-temp:online} Březost samice je 19 až 21 dní. Jedna samice za rok vrhne průměrně 5 až 6 mláďat\cite{diplom-Tkadlec}, z čehož jsme vypočítali reprodukční koeficient pro model.\cite{OurCA}. Na jednom hektaru se vyskytuje maximálně 3000 až 7000 jedinců. \cite{hustoty}
 
+\subsection{Popis a zhodnocení jednotlivých protiopatření}
+\subsubsection{Hluboká orba}
+Hluboká orba je velice účinný prostředek regulace počtu hrabošů. Provádí se na podzim. Dojde při ní k hlubokému rozrušení půdy až do hloubky 30 cm. To má za následek provzdušnění půdy i efektivní ničení nor. Mezi její nevýhody patří vysoká ekonomická náročnost, která je dána hlubokým zásahem do půdy. Čím hlubší zásah se vykoná, tím vyšší je spotřeba paliva. Dalším negativem je vysušení půdy.
+
+\newpage
+\subsubsection{Mělká orba}
+Mělká orba není oproti hluboké orbě tolik účinná, avšak nevysušuje půdu a je ekonomičtější. Zásah je do hloubky 15cm. Zasahuje tedy jen plytké nory a odstraňuje vegetaci, která poskytuje hrabošům přirozený úkryt.
+\subsubsection{Chemické opatření - Stutox II}
+Stutox II je nejsilnějším, ale také nejnebezpečnějším způsobem redukce hlodavců. Dle zákona je možné ho použít třikrát ročně a s aplikací přímo do nor, nikoliv plošně. Jeho efektivita dosahuje až 90\%. Má negativní vliv na životní prostředí i na zdraví lidí v případě požití.\cite{stutox}
+
 \subsection{Popis použitých metod a technologií}
 Při práci byl využit objektově orientovaný jazyk C++. Tento jazyk je díky své rychlosti vhodný pro vytváření simulací, které mohou být výpočetně náročné a jazyk s nižší rychlostí výpočtu by mohl simulaci výrazně zpomalit. 
 
 K vizualizaci jednotlivých stavů celulárního automatu byla použita grafická knihovna OpenCV2 \cite{opencv2}, ve které lze snadno implementovat vytváření jednoduchých obrázků. 
-
-\newpage
 
 \section{Koncepce modelu}
 Koncepce modelu vychází z informací popsaných v předchozí kapitole. Každá buňka obsahuje hodnotu, která udává populaci v dané buňce. Model pro výpočet hustoty populace byl převzat z vědecké článku \cite{OurCA} časopisu Ecological Modelling vydavatelství Elsevier Ltd. Populace je v něm modelována následujícími rovnicemi:
@@ -114,7 +125,7 @@ N_{x,y}(t+1) = H(N_{x,y}(t) + \alpha*N_{x,y}(t) + \beta*N_{x,y}(t)^2 + \gamma\de
 
 
 \section{Architektura simulačního modelu}
-Simulátor je složen ze dvou tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100 a představuje jeden hektár. Počáteční stav automatu je generován náhodně. Simulace vždy běží po dobu 48 měsíců.
+Simulátor je složen ze tří tříd \emph{Cell},\emph{Grid} a \emph{Image}. Mřížka celulárního automatu má rozměry 100x100 a představuje jeden hektar. Počáteční stav automatu je generován náhodně. Simulace začíná vždy ve třetím měsíci a běží po dobu 48 měsíců.
 
 \subsection{Třída Cell}
 Třída \emph{Cell} implementuje jednu buňku celulárního automatu. Obsahuje informace o stavu této buňky, tedy její souřadnice a hustotu. Buňka odpovídá 1x1m pole.
@@ -124,16 +135,17 @@ Třída grid reprezentuje mřížku celulárního automatu a zodpovídá za jeho
 Ovšem nejdůležitější metodou je \emph{get\_future\_grid()}, která ze současného stavu automatu vypočítá ten následující. V ní je definováno chování modelu i jeho změna při vykonávání jednotlivých experimentů.
 
 \subsection{Třída Image}
-Tato třída zajišťuje zobrazení grafického výsledku jednotlivých běhů simulace. Její hlavní metodou je \emph{create\_image()}, která vykresluje současný stav mřížky automatu.
+Tato třída zajišťuje zobrazení grafického výsledku jednotlivých běhů simulace. \\Její hlavní metodou je \emph{create\_image()}, která vykresluje současný stav mřížky automatu.
 
 
 \section{Podstata simulačních experimentů a jejich průbeh}
 Cílem experimentů je demonstrovat šíření populace hraboše polního v úseku 1 hektar a jeho regulaci za použití jednotlivých protiopatření. Předmětem zkoumání je grafický výstup zobrazující nárůst a pokles populace a její migraci. 
 \subsection{Postup experimentování}
-Byly vykonány čtyři experimenty, jejichž výsledky byly konzultovány s Agronomem Gabrielem Konczem ze Zemědělského družstva v Períně na Slovensku. Výsledky byly ověřeny za použití zdrojů a dát\cite{Voles-popul-data:online}
+Byly vykonány čtyři experimenty, jejichž výsledky byly konzultovány s Agronomem Gabrielem Konczem ze Zemědělského družstva v Períně na Slovensku. Výsledky byly taktéž ověřeny za použití dat. \cite{Voles-popul-data:online}
 \subsection{Dokumentace jednotlivých experimentů}
-Experimenty byly vykonané v matici 100x100, která reprezentuje 1 hektar orné půdy. Jedna buňka reprezentuje populaci hrabošů na 1$m^{2}$. Simulace každého experimentu začíná ve třetím měsíci, kdy populace začíná růst. Všechny experimenty měly stejný reprodukční koeficient spočítaný na základě parametru porodnosti, úmrtnosti a migrace. Protiopatření je v experimentech použito jednou za rok, přičemž experimenty byly vykonávány po dobu 4 let.
+Experimenty byly vykonané v matici 100x100, která reprezentuje 1 hektar orné půdy. Jedna buňka reprezentuje populaci hrabošů na 1$m^{2}$. Simulace každého experimentu začíná ve třetím měsíci, kdy populace začíná růst. Všechny experimenty měly stejný reprodukční koeficient, spočítaný na základě parametru porodnosti, úmrtnosti a migrace. Protiopatření je v experimentech použito jednou za rok, přičemž experimenty byly vykonávány po dobu 4 let.
 
+\newpage
 \subsubsection{Experiment 1}
 \begin{figure}[h]
 \begin{center}  
@@ -153,7 +165,7 @@ V tomto experimentu nebylo použito žádné protiopatření. Cílem experimentu
 \end{center}
 \end{figure}
 
-Výsledek experimentu prokázal validitu modelu vůči informací z výzkumů \cite{fluktuace} a datům \cite{Voles-popul-data:online}
+\newpage
 \subsubsection{Experiment 2}
 \begin{figure}[h]
 \begin{center}
@@ -174,8 +186,8 @@ V experimentě byly použity protiopatření hluboké orby, která by podle Mart
 \end{figure}
 
 Výsledek experimentu prokázal přibližně poloviční pokles populace. Jelikož se hluboká orba vykonává před zimou, je efektivním způsobem, jak redukovat stav hrabošů na několik měsíců dopředu, což prokazuje tento experiment.
-\newpage
 
+\newpage
 \subsubsection{Experiment 3}
 \begin{figure}[h]
 \begin{center}
@@ -184,7 +196,7 @@ Výsledek experimentu prokázal přibližně poloviční pokles populace. Jeliko
     \label{exp3_obr1}
 \end{center}
 \end{figure}
-V experimentu byly použity protiopatření mělké orby, která podle dostupných informací od Agronoma Gabriela Koncza redukuje populaci přibližně o 20\%, přičemž je vykonávána jednou ročně v dubnu. 
+V experimentu byly použity protiopatření mělké orby, která podle dostupných informací od Agronoma Gabriela Koncza redukuje populaci přibližně o 20\%, přičemž je vykonávána jednou ročně v dubnu. Nízkou orbou jsou zasaženy pouze plytké nory.
 
 \begin{figure}[h]
 \begin{center}
@@ -194,7 +206,7 @@ V experimentu byly použity protiopatření mělké orby, která podle dostupný
 \end{center}
 \end{figure}
 
-Výsledek experimentu prokázal mírný pokles populace. Mělká orba vykonávána na jaře zasahuje až 15 cm pod povrch a jejím cílem je provzdušnit půdu. Snížení počtu hrabošů dosahuje do 20\% a to kvůli nízkému zásahu pod povrch země, čímž jsou zasaženy jenom plytké nory. 
+Výsledek experimentu prokázal mírný pokles populace. V souladu s očekáváním i daty se s ním populace rychle vyrovnala.
 
 \newpage
 \subsubsection{Experiment 4}
@@ -212,16 +224,23 @@ Výsledek prokázal významný dopad na počty hrabošů, ale k okamžité decim
 
 \begin{figure}[h]
 \begin{center}
-    \includegraphics[width=.4\linewidth]{stutox5.png}
-    \caption{Stav populace před použitím jedu Stutox II}
-    \label{exp4_obr2}
+    \includegraphics[width=.4\linewidth]{stutox6.png}
+    \caption{Stav populace v nasledujícím měsíci po použití jedu Stutox II}
+    \label{exp4_obr1}
 \end{center}
 \end{figure}
 
+Výsledek prokázal významný dopad na počty hrabošů, ale k okamžité decimaci populace nedošlo. Nicméně velké snížení populace se přeneslo do zimy, kde populace téměř úplně vymřela. Další rok se populace ve velmi malém rozsahu pokusila o obnovení, ale její počty nebyly k tomuto účelu dostatečné a přes zimu se zhroutila úplně.
+
+
 \newpage
+
+
 \subsection{Zhodnocení experimentů}
+Celkem jsme provedli 4 experimenty, první experiment byl proveden bez protiopatření a jeho cílem bylo ověření reprodukce hrabošů během roku. Expriment potvrdil, že model se chová dle zjištěných faktů, tedy že v jarních měsících je nenižší populace hraboše polního a pak postupně narůstá, kdy maxima dostahuje na konci léta, kdy dojde k vyčerpání potravy. Druhý experiment byla aplikace hluboké orby, která významně redukovala populaci v simulaci a odpovídá tak zjištěným faktům. Třetí experiment se týkal aplikace mělké orby, tato orba má nízký efekt na omezení populace hrabošů, což lze vidět z provedených experimentů, protože populace se v modelu nijak výrazně nesnížila. Poslední experiment byla aplikace chemického přípravku Stutox II, který má velmi vysokou účinnost redukce populace a lze to vidět i z provedené simulace, kdy došlo k redukci populace hraboše z relativně vysoké populace do jedné z nejnižších populací. Provedené experimenty odpovídají očekávanému chování dle zjištěných faktů o reprodukci hraboše polního a jeho redukce pomocí několika protiopatření a model se tedy chová validně.
 
 \section{Závěr}
+Práce se zabývala studiem reprodukce hraboše polního a jeho možných protiopatření na jeho redukci, a tím minimalizaci škod v zemědělství. Byla zjištěny fakta o délce rozmnožovacího cyklu a období rozmnožování, dále byly zjištěny i informace o výskytu hraboše polního na určitém území. Následně byl implementován celulární automat v jazyce C++, který simuluje reprodukci hraboše a umožňuje simulovat aplikaci protiopatření na redukci populace. Byly provedeny experimenty, které ověřily validitu implementovaného modelu, protože odpovídaly zjištěným faktům.
 
 \newpage
 \bibliographystyle{czplain}

@@ -1,3 +1,0 @@
-/Users/jozefvanicky/Documents/Projects/IMS/model_angl/CMakeFiles/rebuild_cache.dir
-/Users/jozefvanicky/Documents/Projects/IMS/model_angl/CMakeFiles/edit_cache.dir
-/Users/jozefvanicky/Documents/Projects/IMS/model_angl/CMakeFiles/model_angl.dir

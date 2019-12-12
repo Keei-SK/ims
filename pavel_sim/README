@@ -1,6 +1,0 @@
-Spusteni programu:
-
-./evacuation <experiment> [<povoleni_grafickeho_vystupu>]
-
-<experiment> - textovy soubor, ktery definuje pocatecni stav experimentu
-<povoleni_grafickeho_vystupu> - true - povoli graficky vystup
