@@ -58,23 +58,5 @@ Hlavním cílem projektu je vytvořit smysluplnou simulační studii opřenou o 
 [About cellular automata](https://natureofcode.com/book/chapter-7-cellular-automata/)
 [Github IMS Simulation](https://github.com/Raiper34/IMS-Simulation)
 
-##### Ostatní:
-Hraboši
-Nashromážděné informace:
-https://docs.google.com/document/d/17tW57BqfsGx8TBci4QtjmbuqIydXiaDqp5YmOX5iaW8/edit?fbclid=IwAR2cj0RlC9y-sdHp9D0CAN21M4VPA2OpUGen0BhtVbVsNClJh9MLf31u5WM#heading=h.lxxpu5upbf7h
-
-Zavolat sem:
-http://eagri.cz/public/web/ukzuz/tiskovy-servis/aktuality/aktualni-informace-k-vyskytu-hrabose.html
-Možná stopa :D
-http://eagri.cz/public/web/ukzuz/tiskovy-servis/tiskove-zpravy/x2019_extremne-silne-vyskyty-hrabose-polniho-v.html
-http://eagri.cz/public/app/srs_pub/fytoportal/public/?k=0#rlp|met:domu|kap1:start|kap:start
-
-http://eagri.cz/public/app/srs_pub/fytoportal/public/?key=%22c18ccd9cbe2ba381e37b810d0c34c669%22#fotogalerie|hledej:%C5%A1k%C5%AFdce|so:c18ccd9cbe2ba381e37b810d0c34c669
-
-http://eagri.cz/public/app/srs_pub/fytoportal/public/?k=0#mon|metodiky|met:f597e49782c39aebdf54c7de680360d9|kap1:skudci|kap:27a08349fff318f25efc76037b5bc077
-http://eagri.cz/public/app/srs_pub/fytoportal/public/?k=0#mon|modul:zpravy|zpravy:archiv|archiv:prehledy
-http://eagri.cz/public/app/srs_pub/fytoportal/public/?key=%228fdad2df38799d608113b175ea02a198%22#ior|met:8fdad2df38799d608113b175ea02a198|kap1:skudci|kap:f50546d2ac767ccc6ca48bbc1a244e5d
-https://digitalcommons.unl.edu/cgi/viewcontent.cgi?article=1113&context=voles
-
 ## Výsledek hodnocení
 #### 18/20b
